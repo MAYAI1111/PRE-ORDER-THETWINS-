@@ -1,0 +1,2441 @@
+<!DOCTYPE html>
+<html lang="sw" class="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PRE ORDERS BY THETWINS — Dubai Electronics Pre-Order</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: { sans: ['Inter', 'sans-serif'] },
+          colors: {
+            cyber: { bg: '#070b14', card: '#0f172a', surface: '#111827', cyan: '#00d2ff', emerald: '#10b981', amber: '#f59e0b' }
+          }
+        }
+      }
+    };
+  </script>
+  <style>
+    html { scroll-behavior: smooth; background-color: #070b14; color: #f8fafc; }
+    body { background-color: #070b14; overflow-x: hidden; font-family: 'Inter', sans-serif; }
+    .glass-panel {
+      background: rgba(15, 23, 42, 0.85);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+      border: 1px solid rgba(0, 210, 255, 0.22);
+      box-shadow: 0 14px 40px -12px rgba(0, 0, 0, 0.8), 0 0 28px rgba(0, 210, 255, 0.06);
+    }
+    .glass-card {
+      background: linear-gradient(160deg, rgba(17, 24, 39, 0.96), rgba(7, 11, 20, 0.98));
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid rgba(51, 65, 85, 0.65);
+      transition: transform 0.25s cubic-bezier(0.22, 1, 0.36, 1), border-color 0.25s ease, box-shadow 0.25s ease;
+    }
+    .glass-card:hover { transform: translateY(-4px); border-color: rgba(0, 210, 255, 0.55); box-shadow: 0 18px 40px -12px rgba(0, 210, 255, 0.22); }
+    .glass-card.offer-active-card { border-color: rgba(245, 158, 11, 0.45); box-shadow: 0 12px 34px -12px rgba(245, 158, 11, 0.18); }
+    .glass-card.offer-active-card:hover { border-color: rgba(245, 158, 11, 0.85); box-shadow: 0 20px 44px -12px rgba(245, 158, 11, 0.28); }
+    .tabular-timer { font-variant-numeric: tabular-nums; }
+    @keyframes offerGlow {
+      0%, 100% { box-shadow: 0 0 0 0 rgba(245, 158, 11, 0.45); }
+      50% { box-shadow: 0 0 14px 2px rgba(245, 158, 11, 0.4); }
+    }
+    .offer-badge-glow { animation: offerGlow 2.2s infinite; }
+    .mini-offer-check { accent-color: #00d2ff; }
+    .no-scrollbar::-webkit-scrollbar { display: none; }
+    .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+  </style>
+</head>
+<body class="min-h-screen bg-[#070b14] text-slate-100 antialiased selection:bg-[#00d2ff]/30 selection:text-cyan-200">
+
+  <div class="fixed inset-0 pointer-events-none overflow-hidden z-0" aria-hidden="true">
+    <div class="absolute -top-40 -left-40 w-[28rem] h-[28rem] rounded-full bg-[#00d2ff]/10 blur-[140px]"></div>
+    <div class="absolute top-1/3 -right-40 w-[30rem] h-[30rem] rounded-full bg-[#10b981]/8 blur-[140px]"></div>
+    <div class="absolute bottom-0 left-1/4 w-96 h-96 rounded-full bg-[#f59e0b]/7 blur-[130px]"></div>
+  </div>
+
+  <div id="toast-container" class="fixed top-4 right-4 z-[130] flex flex-col gap-2.5 max-w-xs sm:max-w-sm pointer-events-none"></div>
+
+  <!-- 1. CUSTOMER LOGIN GATE -->
+  <div id="auth-gate" class="fixed inset-0 z-50 flex flex-col items-center justify-center p-4 bg-[#070b14]/97 backdrop-blur-2xl hidden overflow-y-auto">
+    <div class="w-full max-w-md flex items-center justify-between mb-3">
+      <span class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-slate-900/90 border border-amber-500/30 text-[11px] font-bold text-amber-300">
+        <span>🇦🇪 Dubai Direct Pre-Order ➔ 🇹🇿</span>
+      </span>
+      <button type="button" data-trigger-admin class="px-3.5 py-2 rounded-xl bg-slate-900/95 hover:bg-[#00d2ff]/15 border border-[#00d2ff]/40 text-xs font-extrabold text-[#00d2ff] transition flex items-center gap-1.5 shadow-lg shadow-[#00d2ff]/10 cursor-pointer">
+        <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2.3" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" /></svg>
+        <span>Ingia Admin (PIN)</span>
+      </button>
+    </div>
+
+    <div class="w-full max-w-md glass-panel rounded-3xl p-6 sm:p-8 relative overflow-hidden">
+      <div class="absolute top-0 inset-x-0 h-1.5 bg-gradient-to-r from-[#00d2ff] via-[#10b981] to-[#f59e0b]"></div>
+
+      <div class="flex flex-col items-center text-center mb-6">
+        <div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-[#00d2ff]/20 to-[#10b981]/20 border border-[#00d2ff]/40 flex items-center justify-center mb-3 shadow-lg shadow-[#00d2ff]/15">
+          <svg class="w-7 h-7 text-[#00d2ff]" fill="none" stroke="currentColor" stroke-width="2.3" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z" /></svg>
+        </div>
+        <h1 id="auth-store-title" class="text-xl sm:text-2xl font-black tracking-tight bg-gradient-to-r from-white via-cyan-100 to-[#00d2ff] bg-clip-text text-transparent">PRE ORDERS BY THETWINS</h1>
+        <p class="text-xs sm:text-sm text-slate-400 mt-1.5 leading-relaxed">
+          Ingia au jisajili kwa <span class="text-[#00d2ff] font-semibold">Namba ya Simu</span> na <span class="text-[#00d2ff] font-semibold">Password</span> pekee. Taarifa zako zitajihifadhi moja kwa moja kwenye simu yako.
+        </p>
+      </div>
+
+      <div id="saved-device-account-box" class="hidden mb-4 p-3 rounded-2xl bg-emerald-500/10 border border-emerald-500/35 flex items-center justify-between gap-2">
+        <div class="min-w-0">
+          <span class="block text-[10px] font-bold uppercase tracking-wider text-emerald-400">Akaunti Iliyohifadhiwa Kwenye Simu</span>
+          <span id="saved-device-phone-label" class="text-xs sm:text-sm font-extrabold text-white truncate block">+255...</span>
+        </div>
+        <button id="one-tap-login-btn" type="button" class="px-3.5 py-2 rounded-xl bg-[#10b981] hover:bg-emerald-400 text-slate-950 text-xs font-extrabold transition shrink-0 cursor-pointer">Ingia Moja kwa Moja</button>
+      </div>
+
+      <form id="auth-form" class="space-y-4">
+        <div>
+          <label for="auth-phone" class="block text-xs font-semibold text-slate-300 mb-1.5">Namba ya Simu</label>
+          <div class="relative">
+            <span class="absolute inset-y-0 left-0 pl-3.5 flex items-center text-[#00d2ff] pointer-events-none">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.1" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" /></svg>
+            </span>
+            <input id="auth-phone" type="tel" inputmode="tel" autocomplete="tel" required placeholder="Mfano: 0712345678 au 0684664950" class="w-full pl-10 pr-4 py-3.5 rounded-xl bg-slate-950/90 border border-slate-700/80 text-sm text-white placeholder-slate-500 focus:outline-none focus:border-[#00d2ff] focus:ring-2 focus:ring-[#00d2ff]/25 transition" />
+          </div>
+        </div>
+
+        <div>
+          <label for="auth-password" class="block text-xs font-semibold text-slate-300 mb-1.5">Password</label>
+          <div class="relative">
+            <span class="absolute inset-y-0 left-0 pl-3.5 flex items-center text-[#00d2ff] pointer-events-none">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.1" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" /></svg>
+            </span>
+            <input id="auth-password" type="password" autocomplete="current-password" required minlength="4" placeholder="Weka password yako (angalau herufi/namba 4)" class="w-full pl-10 pr-12 py-3.5 rounded-xl bg-slate-950/90 border border-slate-700/80 text-sm text-white placeholder-slate-500 focus:outline-none focus:border-[#00d2ff] focus:ring-2 focus:ring-[#00d2ff]/25 transition" />
+            <button id="toggle-password-btn" type="button" aria-label="Onyesha au Ficha Password" class="absolute inset-y-0 right-0 pr-3.5 flex items-center text-slate-400 hover:text-[#00d2ff] transition cursor-pointer">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" /><path stroke-linecap="round" stroke-linejoin="round" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" /></svg>
+            </button>
+          </div>
+        </div>
+
+        <p id="auth-error-msg" class="hidden text-xs text-rose-400 bg-rose-500/10 border border-rose-500/30 rounded-xl px-3.5 py-2.5"></p>
+
+        <button type="submit" class="w-full py-3.5 px-5 rounded-xl font-extrabold text-sm text-slate-950 bg-gradient-to-r from-[#00d2ff] to-[#10b981] hover:brightness-110 active:scale-[0.99] transition shadow-lg shadow-[#00d2ff]/25 flex items-center justify-center gap-2 cursor-pointer">
+          <span>Ingia & Hifadhi Kwenye Simu</span>
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3" /></svg>
+        </button>
+      </form>
+
+      <div class="mt-5 pt-4 border-t border-slate-800/80 flex items-center justify-between text-[11px] text-slate-400">
+        <span class="flex items-center gap-1.5"><span class="w-2 h-2 rounded-full bg-[#10b981] animate-pulse"></span>Hakuna Email Inayohitajika</span>
+        <span id="auth-wa-display" class="text-[#00d2ff] font-bold">WhatsApp: +255684664950</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- 2. MAIN APP -->
+  <div id="main-app" class="relative z-10 flex flex-col min-h-screen">
+
+    <div class="bg-gradient-to-r from-[#0b1326] via-[#111c38] to-[#0b1326] border-b border-[#00d2ff]/25 px-3 py-2 text-center">
+      <p class="text-[11px] sm:text-xs font-extrabold tracking-wide text-cyan-100">
+        🇦🇪 PRE-ORDERS MOJA KWA MOJA KUTOKA DUBAI, UAE ➔ TANZANIA 🇹🇿 <span class="text-slate-500 mx-1">|</span> <span class="text-[#f59e0b]">Mizigo ya Haraka Siku 3–5</span> <span class="text-slate-500 mx-1">|</span> <span class="text-[#10b981]">Bidhaa Original 100%</span>
+      </p>
+    </div>
+
+    <header class="sticky top-0 z-30 glass-panel border-x-0 border-t-0">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between gap-2 sm:gap-4">
+        <a href="#top" class="flex items-center gap-2.5 group min-w-0">
+          <div class="w-9 h-9 rounded-xl bg-gradient-to-br from-[#00d2ff] to-[#10b981] flex items-center justify-center text-slate-950 font-black shadow-md shadow-[#00d2ff]/25 group-hover:scale-105 transition shrink-0">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z" /></svg>
+          </div>
+          <div class="min-w-0">
+            <span id="header-store-name" class="font-black text-xs sm:text-base tracking-tight text-white block truncate">PRE ORDERS BY THETWINS</span>
+            <span class="text-[10px] font-bold uppercase tracking-widest text-[#00d2ff] block -mt-0.5">Dubai Direct Electronics</span>
+          </div>
+        </a>
+
+        <div class="flex items-center gap-2 shrink-0">
+          <div id="user-phone-pill" class="hidden sm:flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-slate-900/90 border border-[#10b981]/30 text-xs text-slate-200">
+            <span class="w-2 h-2 rounded-full bg-[#10b981]"></span>
+            <span id="header-user-phone" class="font-semibold tracking-wide">+255...</span>
+          </div>
+
+          <button id="logout-btn" type="button" title="Badili Akaunti / Toka" class="px-3 py-2 rounded-xl bg-slate-900/90 hover:bg-rose-500/15 border border-slate-700/80 hover:border-rose-500/40 text-xs font-semibold text-slate-300 hover:text-rose-300 transition flex items-center gap-1.5 cursor-pointer">
+            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" /></svg>
+            <span>Toka</span>
+          </button>
+
+          <button type="button" data-trigger-admin aria-label="Admin Back-End" title="Ingia Admin" class="px-3 py-2 rounded-xl bg-slate-900/90 hover:bg-[#00d2ff]/15 border border-[#00d2ff]/40 text-xs font-extrabold text-[#00d2ff] transition flex items-center gap-1.5 cursor-pointer">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" /><path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" /></svg>
+            <span>Ingia Admin (PIN)</span>
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <main id="top" class="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 pt-5 pb-24 space-y-6">
+
+      <!-- HERO SLIDER -->
+      <section aria-label="Matangazo ya Dubai Pre-Order" class="relative rounded-3xl overflow-hidden glass-panel border-[#00d2ff]/25 shadow-2xl">
+        <div id="hero-slider-track" class="relative h-[22rem] sm:h-[24rem] md:h-[25rem] w-full overflow-hidden"></div>
+
+        <button id="slider-prev-btn" type="button" aria-label="Slide Iliyopita" class="absolute left-3 top-1/2 -translate-y-1/2 z-20 w-10 h-10 rounded-full bg-slate-950/80 hover:bg-[#00d2ff] text-white hover:text-slate-950 border border-white/15 backdrop-blur-md flex items-center justify-center transition cursor-pointer">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7" /></svg>
+        </button>
+        <button id="slider-next-btn" type="button" aria-label="Slide Inayofuata" class="absolute right-3 top-1/2 -translate-y-1/2 z-20 w-10 h-10 rounded-full bg-slate-950/80 hover:bg-[#00d2ff] text-white hover:text-slate-950 border border-white/15 backdrop-blur-md flex items-center justify-center transition cursor-pointer">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" /></svg>
+        </button>
+
+        <div id="slider-dots" class="absolute bottom-3.5 left-1/2 -translate-x-1/2 z-20 flex items-center gap-2 px-3 py-1.5 rounded-full bg-slate-950/75 backdrop-blur-md border border-white/10"></div>
+      </section>
+
+      <section class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+        <div class="glass-panel rounded-2xl px-4 py-3 flex items-center gap-3">
+          <div class="w-9 h-9 rounded-xl bg-[#00d2ff]/15 border border-[#00d2ff]/35 flex items-center justify-center text-[#00d2ff] shrink-0 font-black text-sm">🇦🇪</div>
+          <div>
+            <h3 class="text-xs font-extrabold text-white">Dubai Direct Sourcing</h3>
+            <p class="text-[11px] text-slate-400">Mizigo inatoka moja kwa moja Dubai hadi Tanzania (Siku 3–5)</p>
+          </div>
+        </div>
+        <div class="glass-panel rounded-2xl px-4 py-3 flex items-center gap-3">
+          <div class="w-9 h-9 rounded-xl bg-[#10b981]/15 border border-[#10b981]/35 flex items-center justify-center text-[#10b981] shrink-0">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" /></svg>
+          </div>
+          <div>
+            <h3 class="text-xs font-extrabold text-white">Warranty Kamili & Original</h3>
+            <p class="text-[11px] text-slate-400">Sealed box 100% kutoka Apple, Samsung & Sony Dubai</p>
+          </div>
+        </div>
+        <div class="glass-panel rounded-2xl px-4 py-3 flex items-center gap-3">
+          <div class="w-9 h-9 rounded-xl bg-[#f59e0b]/15 border border-[#f59e0b]/35 flex items-center justify-center text-[#f59e0b] shrink-0">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+          </div>
+          <div>
+            <h3 class="text-xs font-extrabold text-white">Malipo Salama & Okoa Hadi 400,000/-</h3>
+            <p class="text-[11px] text-slate-400">Pokea ofisini Mlimani City au delivery popote Tanzania</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- SEARCH & CATEGORIES -->
+      <section id="catalog-section" class="space-y-4">
+        <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-3.5">
+          <div class="relative flex-1 max-w-xl">
+            <span class="absolute inset-y-0 left-0 pl-4 flex items-center text-[#00d2ff] pointer-events-none">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" /></svg>
+            </span>
+            <input id="search-input" type="text" placeholder="Tafuta bidhaa hapa..." class="w-full pl-11 pr-10 py-3.5 rounded-2xl glass-panel text-sm sm:text-base text-white placeholder-slate-400 focus:outline-none focus:border-[#00d2ff] focus:ring-2 focus:ring-[#00d2ff]/25 transition" />
+            <button id="clear-search-btn" type="button" aria-label="Futa utafutaji" class="hidden absolute inset-y-0 right-0 pr-3.5 flex items-center text-slate-400 hover:text-white transition cursor-pointer">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" /></svg>
+            </button>
+          </div>
+
+          <div id="category-pills" class="flex items-center gap-2 overflow-x-auto no-scrollbar py-1">
+            <button type="button" data-category="Zote" class="cat-pill px-4 py-2.5 rounded-xl text-xs sm:text-sm font-bold whitespace-nowrap transition cursor-pointer bg-gradient-to-r from-[#00d2ff] to-[#10b981] text-slate-950 shadow-md shadow-[#00d2ff]/20">Zote</button>
+            <button type="button" data-category="Simu" class="cat-pill px-4 py-2.5 rounded-xl text-xs sm:text-sm font-semibold whitespace-nowrap transition cursor-pointer bg-slate-900/90 text-slate-300 border border-slate-700/80 hover:border-[#00d2ff]/40">Simu</button>
+            <button type="button" data-category="Laptop" class="cat-pill px-4 py-2.5 rounded-xl text-xs sm:text-sm font-semibold whitespace-nowrap transition cursor-pointer bg-slate-900/90 text-slate-300 border border-slate-700/80 hover:border-[#00d2ff]/40">Laptop</button>
+            <button type="button" data-category="Gaming" class="cat-pill px-4 py-2.5 rounded-xl text-xs sm:text-sm font-semibold whitespace-nowrap transition cursor-pointer bg-slate-900/90 text-slate-300 border border-slate-700/80 hover:border-[#00d2ff]/40">Gaming</button>
+            <button type="button" data-category="Accessories" class="cat-pill px-4 py-2.5 rounded-xl text-xs sm:text-sm font-semibold whitespace-nowrap transition cursor-pointer bg-slate-900/90 text-slate-300 border border-slate-700/80 hover:border-[#00d2ff]/40">Accessories</button>
+          </div>
+        </div>
+
+        <div class="flex flex-wrap items-center justify-between gap-2 pt-1">
+          <div class="flex items-center gap-2 text-xs text-slate-400">
+            <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-[#f59e0b]/15 border border-[#f59e0b]/35 text-amber-300 font-bold">
+              <span class="w-2 h-2 rounded-full bg-[#f59e0b] animate-ping"></span>
+              <span id="active-offers-summary">Ofa Zinazoendelea: 0</span>
+            </span>
+          </div>
+          <p id="catalog-count-label" class="text-xs font-medium text-slate-400">Inaonyesha bidhaa zote</p>
+        </div>
+
+        <div id="products-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5"></div>
+
+        <div id="empty-products-state" class="hidden glass-panel rounded-3xl p-10 text-center">
+          <div class="w-12 h-12 rounded-2xl bg-slate-900 border border-slate-700 flex items-center justify-center mx-auto mb-3 text-slate-400">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" /></svg>
+          </div>
+          <h3 class="text-base font-bold text-white">Hakuna bidhaa iliyopatikana</h3>
+          <p class="text-xs text-slate-400 mt-1">Jaribu kutafuta kwa jina lingine au chagua kundi la "Zote".</p>
+          <button id="reset-filters-btn" type="button" class="mt-4 px-4 py-2.5 rounded-xl bg-[#00d2ff]/15 border border-[#00d2ff]/40 text-[#00d2ff] text-xs font-bold hover:bg-[#00d2ff]/25 transition cursor-pointer">Onyesha Bidhaa Zote</button>
+        </div>
+      </section>
+    </main>
+
+    <footer class="border-t border-slate-800/80 bg-[#050810]/95 py-6 px-4 sm:px-6">
+      <div class="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-slate-400">
+        <div class="flex items-center gap-2">
+          <span class="w-2 h-2 rounded-full bg-[#00d2ff]"></span>
+          <span id="footer-store-name" class="font-extrabold text-slate-200">PRE ORDERS BY THETWINS</span>
+          <span>• 🇦🇪 Dubai ➔ 🇹🇿 Tanzania</span>
+        </div>
+        <div class="flex items-center gap-2">
+          <span>Oda za WhatsApp:</span>
+          <a id="footer-wa-link" href="https://wa.me/255684664950" target="_blank" rel="noopener noreferrer" class="font-bold text-[#00d2ff] hover:underline">+255684664950</a>
+        </div>
+      </div>
+    </footer>
+  </div>
+
+  <!-- 3. CHECKOUT MODAL -->
+  <div id="quick-order-modal" class="fixed inset-0 z-50 hidden items-center justify-center p-3 sm:p-4 bg-black/85 backdrop-blur-md overflow-y-auto">
+    <div class="w-full max-w-lg glass-panel rounded-3xl p-5 sm:p-6 relative overflow-hidden my-auto max-h-[94vh] overflow-y-auto">
+      <div id="qo-top-bar" class="absolute top-0 inset-x-0 h-1.5 bg-gradient-to-r from-[#00d2ff] via-[#10b981] to-[#00d2ff]"></div>
+
+      <div class="flex items-start justify-between gap-3 mb-4">
+        <div class="flex items-center gap-3 min-w-0">
+          <img id="qo-image" src="" alt="" class="w-16 h-16 rounded-2xl object-cover bg-slate-950 border border-slate-700/80 shrink-0" />
+          <div class="min-w-0">
+            <div class="flex flex-wrap items-center gap-1.5 mb-1">
+              <span id="qo-mode-badge" class="inline-block px-2 py-0.5 rounded-md bg-[#00d2ff]/15 border border-[#00d2ff]/35 text-[#00d2ff] text-[10px] font-extrabold uppercase tracking-wider">BEI HALISIA</span>
+              <span id="qo-live-timer-pill" class="hidden px-2 py-0.5 rounded-md bg-[#f59e0b]/20 border border-[#f59e0b]/45 text-amber-300 text-[10px] font-bold tabular-timer">00 : 00 : 00</span>
+            </div>
+            <h3 id="qo-name" class="text-base sm:text-lg font-extrabold text-white truncate">Bidhaa</h3>
+            <div class="flex items-center gap-2 mt-0.5">
+              <p id="qo-unit-price" class="text-xs sm:text-sm font-extrabold text-[#10b981]">TZS 0</p>
+              <span id="qo-old-price" class="hidden text-xs text-slate-500 line-through">TZS 0</span>
+            </div>
+          </div>
+        </div>
+        <button id="close-qo-btn" type="button" aria-label="Funga" class="p-2 rounded-xl bg-slate-900 border border-slate-700 text-slate-400 hover:text-white transition cursor-pointer shrink-0">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" /></svg>
+        </button>
+      </div>
+
+      <form id="checkout-order-form" class="space-y-3.5">
+        <div class="flex items-center justify-between p-3 rounded-2xl bg-slate-950/85 border border-slate-800">
+          <span class="text-xs font-semibold text-slate-300">Idadi ya Bidhaa (Quantity)</span>
+          <div class="flex items-center gap-3">
+            <button id="qo-qty-minus" type="button" class="w-8 h-8 rounded-xl bg-slate-800 hover:bg-slate-700 text-white font-bold text-base flex items-center justify-center cursor-pointer transition">-</button>
+            <span id="qo-qty-display" class="text-sm font-black text-white w-6 text-center tabular-timer">1</span>
+            <button id="qo-qty-plus" type="button" class="w-8 h-8 rounded-xl bg-slate-800 hover:bg-slate-700 text-white font-bold text-base flex items-center justify-center cursor-pointer transition">+</button>
+          </div>
+        </div>
+
+        <div id="qo-mini-offers-wrapper" class="p-3 rounded-2xl bg-[#111827]/95 border border-[#00d2ff]/25 space-y-2"></div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+          <div>
+            <label for="qo-customer-name" class="block text-xs font-semibold text-slate-300 mb-1">Jina Kamili la Mteja <span class="text-rose-400">*</span></label>
+            <input id="qo-customer-name" type="text" required placeholder="Mfano: Kelvin Mwamba" class="w-full px-3.5 py-2.5 rounded-xl bg-slate-950/90 border border-slate-700/80 text-sm text-white placeholder-slate-500 focus:outline-none focus:border-[#00d2ff] transition" />
+          </div>
+          <div>
+            <label for="qo-customer-phone-input" class="block text-xs font-semibold text-slate-300 mb-1">Namba ya Simu <span class="text-rose-400">*</span></label>
+            <input id="qo-customer-phone-input" type="tel" inputmode="tel" required placeholder="Mfano: +255712345678" class="w-full px-3.5 py-2.5 rounded-xl bg-slate-950/90 border border-slate-700/80 text-sm text-white placeholder-slate-500 focus:outline-none focus:border-[#00d2ff] transition" />
+          </div>
+        </div>
+
+        <div>
+          <label for="qo-region-select" class="block text-xs font-semibold text-slate-300 mb-1">Mkoa Uliopo <span class="text-rose-400">*</span></label>
+          <select id="qo-region-select" required class="w-full px-3.5 py-2.5 rounded-xl bg-slate-950/90 border border-slate-700/80 text-sm text-white focus:outline-none focus:border-[#00d2ff] transition">
+            <option value="">-- Chagua Mkoa Wako --</option>
+            <option value="Dar es Salaam">Dar es Salaam</option>
+            <option value="Arusha">Arusha</option>
+            <option value="Mwanza">Mwanza</option>
+            <option value="Dodoma">Dodoma</option>
+            <option value="Mbeya">Mbeya</option>
+            <option value="Morogoro">Morogoro</option>
+            <option value="Tanga">Tanga</option>
+            <option value="Zanzibar (Unguja & Pemba)">Zanzibar (Unguja & Pemba)</option>
+            <option value="Kilimanjaro">Kilimanjaro</option>
+            <option value="Shinyanga">Shinyanga</option>
+            <option value="Mtwara">Mtwara</option>
+            <option value="Kigoma">Kigoma</option>
+            <option value="Tabora">Tabora</option>
+            <option value="Iringa">Iringa</option>
+            <option value="Mara">Mara</option>
+            <option value="Kagera">Kagera</option>
+            <option value="Pwani">Pwani</option>
+            <option value="Lindi">Lindi</option>
+            <option value="Ruvuma">Ruvuma</option>
+            <option value="Rukwa">Rukwa</option>
+            <option value="Singida">Singida</option>
+            <option value="Manyara">Manyara</option>
+            <option value="Geita">Geita</option>
+            <option value="Katavi">Katavi</option>
+            <option value="Njombe">Njombe</option>
+            <option value="Simiyu">Simiyu</option>
+            <option value="Songwe">Songwe</option>
+          </select>
+        </div>
+
+        <div class="space-y-2">
+          <span class="block text-xs font-semibold text-slate-300">Utaratibu wa Kupokea Oda <span class="text-rose-400">*</span></span>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
+            <label id="delivery-card-office" class="p-3 rounded-2xl bg-slate-950/90 border-2 border-[#00d2ff] cursor-pointer transition flex items-start gap-2.5">
+              <input type="radio" name="deliveryMode" value="office" checked class="mt-0.5 accent-[#00d2ff] cursor-pointer" />
+              <div class="min-w-0">
+                <span class="block text-xs font-extrabold text-white">Anapokelea Ofisini</span>
+                <span id="qo-office-location-sub" class="block text-[11px] text-slate-400 mt-0.5 leading-snug">Kupokea Ofisini — Mlimani City, Dar es Salaam</span>
+              </div>
+            </label>
+            <label id="delivery-card-door" class="p-3 rounded-2xl bg-slate-950/90 border border-slate-700/80 hover:border-slate-600 cursor-pointer transition flex items-start gap-2.5">
+              <input type="radio" name="deliveryMode" value="delivery" class="mt-0.5 accent-[#00d2ff] cursor-pointer" />
+              <div class="min-w-0">
+                <span class="block text-xs font-extrabold text-white">Anahitaji Afikishiwe Hadi Alipo</span>
+                <span class="block text-[11px] text-slate-400 mt-0.5 leading-snug">Delivery Hadi Ulipo (Nyumbani / Kazini / Mkoani)</span>
+              </div>
+            </label>
+          </div>
+        </div>
+
+        <div id="qo-delivery-address-wrapper" class="hidden">
+          <label for="qo-delivery-address" class="block text-xs font-semibold text-amber-300 mb-1">Wilaya / Mtaa / Mahali Halisi pa Kufikishiwa <span class="text-rose-400">*</span></label>
+          <input id="qo-delivery-address" type="text" placeholder="Mfano: Kinondoni, Mikocheni B karibu na Kwa Warioba" class="w-full px-3.5 py-2.5 rounded-xl bg-slate-950/90 border border-amber-500/50 text-sm text-white placeholder-slate-500 focus:outline-none focus:border-amber-400 transition" />
+        </div>
+
+        <div>
+          <label for="qo-note" class="block text-xs font-semibold text-slate-300 mb-1">Maelezo Mengine <span class="text-slate-500 font-normal">(Si lazima — rangi, GB, muda wa kupokea)</span></label>
+          <textarea id="qo-note" rows="2" placeholder="Mfano: Rangi Desert Titanium, nikipatikana kuanzia saa 8 mchana..." class="w-full px-3.5 py-2 rounded-xl bg-slate-950/90 border border-slate-700/80 text-sm text-white placeholder-slate-500 focus:outline-none focus:border-[#00d2ff] transition resize-none"></textarea>
+        </div>
+
+        <p id="qo-error-msg" class="hidden text-xs text-rose-400 bg-rose-500/10 border border-rose-500/30 rounded-xl px-3.5 py-2"></p>
+
+        <div class="flex items-center justify-between py-3 px-4 rounded-2xl bg-slate-900/95 border border-[#00d2ff]/30">
+          <div>
+            <span class="block text-[10px] uppercase tracking-wider font-bold text-slate-400">Jumla ya Malipo</span>
+            <span id="qo-price-mode-note" class="text-[11px] text-slate-400">Kwa bei halisia</span>
+          </div>
+          <span id="qo-total-price" class="text-lg sm:text-xl font-black text-[#00d2ff] tabular-timer">TZS 0</span>
+        </div>
+
+        <button id="qo-send-whatsapp-btn" type="submit" class="w-full py-3.5 px-5 rounded-xl font-extrabold text-sm text-white bg-gradient-to-r from-[#10b981] to-emerald-600 hover:brightness-110 active:scale-[0.99] transition shadow-lg shadow-[#10b981]/25 flex items-center justify-center gap-2 cursor-pointer">
+          <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766.001-3.187-2.575-5.77-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.299.045-.677.063-1.092-.069-.252-.08-.575-.187-.988-.365-1.739-.751-2.874-2.502-2.961-2.617-.087-.116-.708-.94-.708-1.793s.448-1.273.607-1.446c.159-.173.346-.217.462-.217l.332.006c.106.005.249-.04.39.298.144.347.491 1.2.534 1.287.043.087.072.188.014.304-.058.116-.087.188-.173.289l-.26.304c-.087.086-.177.18-.076.354.101.174.449.741.964 1.201.662.591 1.221.774 1.394.86s.274.072.376-.043c.101-.116.433-.506.549-.68.116-.173.231-.145.39-.087s1.011.477 1.184.564.289.13.332.202c.045.072.045.419-.1.824z"/></svg>
+          <span>Tuma Oda WhatsApp Sasa</span>
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <!-- 4. ADMIN PIN MODAL (hint na kiungo cha "Rudisha PIN" vimeondolewa) -->
+  <div id="admin-pin-modal" class="fixed inset-0 z-[60] hidden items-center justify-center p-4 bg-black/85 backdrop-blur-md">
+    <div class="w-full max-w-sm glass-panel rounded-3xl p-6 text-center relative overflow-hidden">
+      <div class="absolute top-0 inset-x-0 h-1.5 bg-gradient-to-r from-[#00d2ff] to-[#10b981]"></div>
+      <div class="w-12 h-12 rounded-2xl bg-[#00d2ff]/15 border border-[#00d2ff]/35 flex items-center justify-center mx-auto mb-3 text-[#00d2ff]">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" /></svg>
+      </div>
+      <h3 class="text-lg font-extrabold text-white">Admin Back-End</h3>
+      <p class="text-xs text-slate-400 mt-1 mb-4">Ingiza PIN ya Admin</p>
+
+      <form id="admin-pin-form" class="space-y-3">
+        <div class="relative">
+          <input id="admin-pin-input" type="password" inputmode="numeric" maxlength="8" required placeholder="••••" class="w-full text-center tracking-[0.45em] text-lg font-black py-3 px-10 rounded-xl bg-slate-950 border border-slate-700 text-white focus:outline-none focus:border-[#00d2ff]" />
+          <button id="toggle-admin-pin-visibility" type="button" aria-label="Onyesha au Ficha PIN" class="absolute inset-y-0 right-0 pr-3 flex items-center text-slate-400 hover:text-[#00d2ff] cursor-pointer">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" /><path stroke-linecap="round" stroke-linejoin="round" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" /></svg>
+          </button>
+        </div>
+
+        <p id="admin-pin-error" class="hidden text-xs text-rose-400">PIN si sahihi. Jaribu tena.</p>
+
+        <div class="flex gap-2">
+          <button id="cancel-pin-btn" type="button" class="flex-1 py-2.5 rounded-xl bg-slate-900 border border-slate-700 text-xs font-semibold text-slate-300 hover:text-white cursor-pointer">Ghairi</button>
+          <button type="submit" class="flex-1 py-2.5 rounded-xl bg-gradient-to-r from-[#00d2ff] to-[#10b981] text-slate-950 text-xs font-extrabold cursor-pointer">Fungua Admin</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- 5. ADMIN DASHBOARD -->
+  <div id="admin-dashboard-modal" class="fixed inset-0 z-[55] hidden overflow-y-auto bg-[#070b14]/97 backdrop-blur-xl">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 py-6 space-y-6">
+
+      <div class="glass-panel rounded-2xl p-4 sm:p-5 flex flex-wrap items-center justify-between gap-3">
+        <div>
+          <span class="text-[10px] font-extrabold uppercase tracking-widest text-[#00d2ff]">Back-End Control Center</span>
+          <h2 id="admin-panel-store-title" class="text-lg sm:text-xl font-black text-white">PRE ORDERS BY THETWINS — Admin</h2>
+        </div>
+        <button id="close-admin-dashboard-btn" type="button" class="px-4 py-2.5 rounded-xl bg-slate-900 hover:bg-slate-800 border border-slate-700 text-xs font-bold text-white flex items-center gap-1.5 cursor-pointer">
+          <span>Rudi Dukani</span>
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" /></svg>
+        </button>
+      </div>
+
+      <div class="flex items-center gap-2 overflow-x-auto no-scrollbar pb-1">
+        <button type="button" data-admin-tab="products" class="admin-tab-btn px-4 py-2.5 rounded-xl text-xs sm:text-sm font-extrabold bg-gradient-to-r from-[#00d2ff] to-[#10b981] text-slate-950 cursor-pointer whitespace-nowrap">Bidhaa (<span id="admin-prod-count">0</span>)</button>
+        <button type="button" data-admin-tab="slider" class="admin-tab-btn px-4 py-2.5 rounded-xl text-xs sm:text-sm font-bold bg-slate-900 text-slate-300 border border-slate-700/80 cursor-pointer whitespace-nowrap">Slider & Dubai Banner (<span id="admin-slide-count">0</span>)</button>
+        <button type="button" data-admin-tab="minioffers" class="admin-tab-btn px-4 py-2.5 rounded-xl text-xs sm:text-sm font-bold bg-slate-900 text-slate-300 border border-slate-700/80 cursor-pointer whitespace-nowrap">Offer Ndogondogo (10)</button>
+        <button type="button" data-admin-tab="orders" class="admin-tab-btn px-4 py-2.5 rounded-xl text-xs sm:text-sm font-bold bg-slate-900 text-slate-300 border border-slate-700/80 cursor-pointer whitespace-nowrap">Oda Zilizotumwa (<span id="admin-order-count">0</span>)</button>
+        <button type="button" data-admin-tab="settings" class="admin-tab-btn px-4 py-2.5 rounded-xl text-xs sm:text-sm font-bold bg-slate-900 text-slate-300 border border-slate-700/80 cursor-pointer whitespace-nowrap">Mipangilio</button>
+      </div>
+
+      <!-- TAB 1: PRODUCTS -->
+      <div id="admin-tab-products" class="admin-tab-panel grid grid-cols-1 lg:grid-cols-12 gap-6">
+        <div class="lg:col-span-5 glass-panel rounded-2xl p-5 h-fit">
+          <div class="flex items-center justify-between mb-4">
+            <h3 id="admin-prod-form-title" class="text-base font-extrabold text-white flex items-center gap-2">
+              <span class="w-2.5 h-2.5 rounded-full bg-[#00d2ff]"></span>
+              <span>Ongeza Bidhaa Mpya</span>
+            </h3>
+            <button id="cancel-edit-prod-btn" type="button" class="hidden text-xs text-rose-400 hover:underline font-bold cursor-pointer">Ghairi Hariri</button>
+          </div>
+
+          <form id="admin-product-form" class="space-y-3.5">
+            <input id="edit-prod-id" type="hidden" value="" />
+
+            <div>
+              <label class="block text-xs font-semibold text-slate-300 mb-1">Jina la Bidhaa</label>
+              <input id="prod-name-input" type="text" required placeholder="Mfano: iPhone 16 Pro Max 256GB" class="w-full px-3.5 py-2.5 rounded-xl bg-slate-950 border border-slate-700 text-sm text-white focus:outline-none focus:border-[#00d2ff]" />
+            </div>
+
+            <div class="grid grid-cols-2 gap-3">
+              <div>
+                <label class="block text-xs font-semibold text-slate-300 mb-1">Kundi (Category)</label>
+                <select id="prod-category-input" class="w-full px-3 py-2.5 rounded-xl bg-slate-950 border border-slate-700 text-sm text-white focus:outline-none focus:border-[#00d2ff]">
+                  <option value="Simu">Simu</option>
+                  <option value="Laptop">Laptop</option>
+                  <option value="Gaming">Gaming</option>
+                  <option value="Accessories">Accessories</option>
+                </select>
+              </div>
+              <div>
+                <label class="block text-xs font-semibold text-slate-300 mb-1">Bei Halisia (TZS)</label>
+                <input id="prod-regular-price-input" type="number" min="100" step="100" required placeholder="3350000" class="w-full px-3.5 py-2.5 rounded-xl bg-slate-950 border border-slate-700 text-sm text-white focus:outline-none focus:border-[#00d2ff]" />
+              </div>
+            </div>
+
+            <div>
+              <label class="block text-xs font-semibold text-slate-300 mb-1">Maelezo Mafupi (Specs)</label>
+              <input id="prod-specs-input" type="text" required placeholder="Mfano: 256GB • Desert Titanium • Dubai Sealed" class="w-full px-3.5 py-2.5 rounded-xl bg-slate-950 border border-slate-700 text-sm text-white focus:outline-none focus:border-[#00d2ff]" />
+            </div>
+
+            <div class="space-y-2">
+              <label class="block text-xs font-semibold text-slate-300">Picha ya Bidhaa (URL au Pakia Picha)</label>
+              <input id="prod-image-url-input" type="url" placeholder="https://images.unsplash.com/..." class="w-full px-3.5 py-2.5 rounded-xl bg-slate-950 border border-slate-700 text-sm text-white focus:outline-none focus:border-[#00d2ff]" />
+              <div class="flex items-center gap-2">
+                <label class="flex-1 px-3 py-2 rounded-xl bg-slate-900 hover:bg-slate-800 border border-dashed border-slate-600 text-xs text-slate-300 text-center cursor-pointer transition">
+                  <span>+ Chagua Picha Kutoka Kwenye Simu/PC</span>
+                  <input id="prod-image-file-input" type="file" accept="image/*" class="hidden" />
+                </label>
+                <span id="prod-file-status" class="text-[11px] text-[#10b981] hidden">Imepakiwa!</span>
+              </div>
+            </div>
+
+            <div class="p-3.5 rounded-2xl bg-slate-950/90 border border-[#f59e0b]/40 space-y-3">
+              <div class="flex items-center justify-between">
+                <div>
+                  <span class="text-xs font-extrabold text-amber-300 flex items-center gap-1.5">
+                    <svg class="w-4 h-4 text-[#f59e0b]" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+                    Washa Offer Mode (Bei ya Offer + Saa)
+                  </span>
+                  <span class="block text-[11px] text-slate-400 mt-0.5">Muda ukiisha, inarudi kwenye Bei Halisia kiotomatiki.</span>
+                </div>
+                <label class="relative inline-flex items-center cursor-pointer">
+                  <input id="prod-offer-toggle" type="checkbox" class="sr-only peer" />
+                  <div class="w-11 h-6 bg-slate-800 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-[#f59e0b]"></div>
+                </label>
+              </div>
+
+              <div id="offer-fields-wrapper" class="hidden space-y-3 pt-2 border-t border-slate-800">
+                <div>
+                  <label class="block text-xs font-semibold text-amber-200 mb-1">Bei ya Offer (TZS)</label>
+                  <input id="prod-offer-price-input" type="number" min="100" step="100" placeholder="2950000" class="w-full px-3.5 py-2.5 rounded-xl bg-slate-900 border border-[#f59e0b]/45 text-sm text-white focus:outline-none focus:border-[#f59e0b]" />
+                </div>
+
+                <div>
+                  <label class="block text-xs font-semibold text-slate-300 mb-1.5">Muda wa Offer Kuisha (Masaa & Dakika)</label>
+                  <div class="grid grid-cols-2 gap-2.5">
+                    <div>
+                      <span class="block text-[10px] text-slate-400 mb-1">Masaa (Hours)</span>
+                      <input id="prod-offer-hours-input" type="number" min="0" max="720" value="6" class="w-full px-3 py-2 rounded-xl bg-slate-900 border border-slate-700 text-sm font-bold text-white focus:outline-none focus:border-[#f59e0b]" />
+                    </div>
+                    <div>
+                      <span class="block text-[10px] text-slate-400 mb-1">Dakika (Minutes)</span>
+                      <input id="prod-offer-mins-input" type="number" min="0" max="59" value="0" class="w-full px-3 py-2 rounded-xl bg-slate-900 border border-slate-700 text-sm font-bold text-white focus:outline-none focus:border-[#f59e0b]" />
+                    </div>
+                  </div>
+                </div>
+
+                <div>
+                  <span class="block text-[10px] text-slate-400 mb-1.5">Muda wa Haraka:</span>
+                  <div class="flex flex-wrap gap-1.5">
+                    <button type="button" data-preset-hours="0" data-preset-mins="1" class="offer-preset-btn px-2.5 py-1 rounded-lg bg-slate-800 hover:bg-[#f59e0b]/20 border border-slate-700 text-[11px] font-semibold text-amber-300 cursor-pointer">Dak 1 (Test)</button>
+                    <button type="button" data-preset-hours="2" data-preset-mins="0" class="offer-preset-btn px-2.5 py-1 rounded-lg bg-slate-800 hover:bg-[#f59e0b]/20 border border-slate-700 text-[11px] font-semibold text-slate-200 cursor-pointer">2 Masaa</button>
+                    <button type="button" data-preset-hours="6" data-preset-mins="0" class="offer-preset-btn px-2.5 py-1 rounded-lg bg-slate-800 hover:bg-[#f59e0b]/20 border border-slate-700 text-[11px] font-semibold text-slate-200 cursor-pointer">6 Masaa</button>
+                    <button type="button" data-preset-hours="12" data-preset-mins="0" class="offer-preset-btn px-2.5 py-1 rounded-lg bg-slate-800 hover:bg-[#f59e0b]/20 border border-slate-700 text-[11px] font-semibold text-slate-200 cursor-pointer">12 Masaa</button>
+                    <button type="button" data-preset-hours="24" data-preset-mins="0" class="offer-preset-btn px-2.5 py-1 rounded-lg bg-slate-800 hover:bg-[#f59e0b]/20 border border-slate-700 text-[11px] font-semibold text-slate-200 cursor-pointer">24 Masaa</button>
+                  </div>
+                </div>
+
+                <button id="turn-off-offer-btn" type="button" class="hidden w-full py-2 rounded-xl bg-rose-500/15 hover:bg-rose-500/25 border border-rose-500/40 text-rose-300 text-xs font-bold transition cursor-pointer">Zima Offer Sasa (Rudi Bei Halisia)</button>
+              </div>
+            </div>
+
+            <div class="p-3.5 rounded-2xl bg-slate-950/90 border border-[#00d2ff]/35 space-y-3">
+              <div>
+                <label for="prod-mini-mode-select" class="block text-xs font-extrabold text-cyan-200 mb-1">Mfumo wa Offer Ndogondogo Kwenye Bidhaa Hii</label>
+                <select id="prod-mini-mode-select" class="w-full px-3 py-2.5 rounded-xl bg-slate-900 border border-slate-700 text-xs sm:text-sm font-bold text-white focus:outline-none focus:border-[#00d2ff]">
+                  <option value="select5">Washa: Chagua 5 (Choose Your Offer 5 Pieces)</option>
+                  <option value="auto">Automatic (Offer Tulizoziweka Tayari)</option>
+                  <option value="off">Zima (OFF — Hakuna Sehemu ya Offer Ndogondogo)</option>
+                </select>
+              </div>
+
+              <div id="admin-auto-mini-wrapper" class="hidden space-y-2 pt-2 border-t border-slate-800">
+                <span class="block text-[11px] font-semibold text-emerald-300">Tiki Offer Ndogondogo Zinazoambatana na Bidhaa Hii Moja kwa Moja:</span>
+                <div id="admin-auto-mini-checkboxes" class="grid grid-cols-2 gap-1.5"></div>
+              </div>
+            </div>
+
+            <button id="admin-prod-submit-btn" type="submit" class="w-full py-3 rounded-xl font-extrabold text-sm text-slate-950 bg-gradient-to-r from-[#00d2ff] to-[#10b981] hover:brightness-110 transition cursor-pointer">+ Hifadhi Bidhaa Dukani</button>
+          </form>
+        </div>
+
+        <div class="lg:col-span-7 glass-panel rounded-2xl p-5">
+          <div class="flex items-center justify-between mb-4">
+            <h3 class="text-base font-extrabold text-white">Bidhaa Zilizopo Dukani</h3>
+            <span class="text-[11px] text-slate-400">Badili mode papo hapo</span>
+          </div>
+          <div id="admin-products-list" class="space-y-3 max-h-[680px] overflow-y-auto pr-1"></div>
+        </div>
+      </div>
+
+      <!-- TAB 2: SLIDER -->
+      <div id="admin-tab-slider" class="admin-tab-panel hidden grid-cols-1 lg:grid-cols-12 gap-6">
+        <div class="lg:col-span-5 glass-panel rounded-2xl p-5 h-fit">
+          <div class="flex items-center justify-between mb-4">
+            <h3 id="admin-slide-form-title" class="text-base font-extrabold text-white">Ongeza Slide Mpya</h3>
+            <button id="cancel-edit-slide-btn" type="button" class="hidden text-xs text-rose-400 hover:underline font-bold cursor-pointer">Ghairi Hariri</button>
+          </div>
+          <form id="admin-slide-form" class="space-y-3.5">
+            <input id="edit-slide-id" type="hidden" value="" />
+            <div>
+              <label class="block text-xs font-semibold text-slate-300 mb-1">Beji ya Juu (Promo Badge)</label>
+              <input id="slide-tag-input" type="text" required placeholder="Mfano: OKOA HADI TZS 400,000/-" class="w-full px-3.5 py-2.5 rounded-xl bg-slate-950 border border-slate-700 text-sm text-white focus:outline-none focus:border-[#00d2ff]" />
+            </div>
+            <div>
+              <label class="block text-xs font-semibold text-slate-300 mb-1">Kichwa Kikubwa (Title)</label>
+              <input id="slide-title-input" type="text" required placeholder="Agiza Moja kwa Moja Kutoka Dubai — Okoa Hadi TZS 400,000/-" class="w-full px-3.5 py-2.5 rounded-xl bg-slate-950 border border-slate-700 text-sm text-white focus:outline-none focus:border-[#00d2ff]" />
+            </div>
+            <div>
+              <label class="block text-xs font-semibold text-slate-300 mb-1">Maelezo Mafupi (Subtitle)</label>
+              <input id="slide-subtitle-input" type="text" required placeholder="Bidhaa mpya sealed kutoka Dubai UAE..." class="w-full px-3.5 py-2.5 rounded-xl bg-slate-950 border border-slate-700 text-sm text-white focus:outline-none focus:border-[#00d2ff]" />
+            </div>
+            <div class="space-y-2">
+              <label class="block text-xs font-semibold text-slate-300">Picha ya Slide (URL au Pakia)</label>
+              <input id="slide-image-url-input" type="url" placeholder="https://images.unsplash.com/..." class="w-full px-3.5 py-2.5 rounded-xl bg-slate-950 border border-slate-700 text-sm text-white focus:outline-none focus:border-[#00d2ff]" />
+              <label class="block px-3 py-2 rounded-xl bg-slate-900 hover:bg-slate-800 border border-dashed border-slate-600 text-xs text-slate-300 text-center cursor-pointer transition">
+                <span>+ Chagua Picha ya Slide</span>
+                <input id="slide-image-file-input" type="file" accept="image/*" class="hidden" />
+              </label>
+            </div>
+            <button id="admin-slide-submit-btn" type="submit" class="w-full py-3 rounded-xl font-extrabold text-sm text-slate-950 bg-gradient-to-r from-[#00d2ff] to-[#10b981] transition cursor-pointer">+ Hifadhi Kwenye Slider</button>
+          </form>
+        </div>
+
+        <div class="lg:col-span-7 glass-panel rounded-2xl p-5">
+          <h3 class="text-base font-extrabold text-white mb-4">Slides Zinazoonekana Dukani</h3>
+          <div id="admin-slides-list" class="space-y-3"></div>
+        </div>
+      </div>
+
+      <!-- TAB 3: MINI OFFERS -->
+      <div id="admin-tab-minioffers" class="admin-tab-panel hidden">
+        <div class="glass-panel rounded-2xl p-5 max-w-3xl space-y-4">
+          <div class="flex flex-wrap items-center justify-between gap-2">
+            <div>
+              <h3 class="text-base font-extrabold text-white">Hariri Offer Ndogondogo 10</h3>
+              <p class="text-xs text-slate-400 mt-0.5">Hizi ndizo offer ndogondogo 10 zinazotumika kwenye "Chagua 5" na "Automatic" kwa kila bidhaa.</p>
+            </div>
+            <button id="reset-mini-offers-btn" type="button" class="px-3 py-2 rounded-xl bg-slate-900 hover:bg-slate-800 border border-slate-700 text-xs font-bold text-amber-300 cursor-pointer">Rudisha 10 za Awali</button>
+          </div>
+
+          <form id="admin-mini-offers-form" class="space-y-4">
+            <div id="admin-mini-offers-inputs" class="grid grid-cols-1 sm:grid-cols-2 gap-3"></div>
+            <button type="submit" class="w-full sm:w-auto px-6 py-3 rounded-xl font-extrabold text-sm text-slate-950 bg-gradient-to-r from-[#00d2ff] to-[#10b981] hover:brightness-110 transition cursor-pointer">Hifadhi Offer Ndogondogo 10</button>
+          </form>
+        </div>
+      </div>
+
+      <!-- TAB 4: ORDERS -->
+      <div id="admin-tab-orders" class="admin-tab-panel hidden">
+        <div class="glass-panel rounded-2xl p-5">
+          <div class="flex flex-wrap items-center justify-between gap-2 mb-4">
+            <div>
+              <h3 class="text-base font-extrabold text-white">Oda Zilizotumwa WhatsApp</h3>
+              <p class="text-xs text-slate-400">Orodha ya oda zilizotumwa kutoka kwenye kifaa hiki. Oda halisi za wateja wote zinakufikia kupitia WhatsApp.</p>
+            </div>
+            <button id="clear-orders-btn" type="button" class="px-3 py-1.5 rounded-xl bg-rose-500/15 hover:bg-rose-500/25 border border-rose-500/30 text-xs font-bold text-rose-300 cursor-pointer">Futa Historia Yote</button>
+          </div>
+          <div id="admin-orders-list" class="space-y-3 max-h-[580px] overflow-y-auto pr-1"></div>
+        </div>
+      </div>
+
+      <!-- TAB 5: SETTINGS -->
+      <div id="admin-tab-settings" class="admin-tab-panel hidden grid-cols-1 md:grid-cols-2 gap-6">
+        <div class="glass-panel rounded-2xl p-5 space-y-4">
+          <h3 class="text-base font-extrabold text-white">Mipangilio ya Duka, Ofisi & WhatsApp</h3>
+          <form id="admin-settings-form" class="space-y-3.5">
+            <div>
+              <label class="block text-xs font-semibold text-slate-300 mb-1">Jina la Duka</label>
+              <input id="settings-store-name" type="text" required class="w-full px-3.5 py-2.5 rounded-xl bg-slate-950 border border-slate-700 text-sm text-white focus:outline-none focus:border-[#00d2ff]" />
+            </div>
+            <div>
+              <label class="block text-xs font-semibold text-slate-300 mb-1">Namba ya WhatsApp (Bila alama +, mfano 255684664950)</label>
+              <input id="settings-wa-number" type="tel" required class="w-full px-3.5 py-2.5 rounded-xl bg-slate-950 border border-slate-700 text-sm text-white focus:outline-none focus:border-[#00d2ff]" />
+            </div>
+            <div>
+              <label class="block text-xs font-semibold text-slate-300 mb-1">Mahali Ofisi Ilipo (Office Pickup Location)</label>
+              <input id="settings-office-location" type="text" required class="w-full px-3.5 py-2.5 rounded-xl bg-slate-950 border border-slate-700 text-sm text-white focus:outline-none focus:border-[#00d2ff]" />
+            </div>
+            <div>
+              <label class="block text-xs font-semibold text-slate-300 mb-1">PIN ya Admin</label>
+              <input id="settings-admin-pin" type="text" inputmode="numeric" maxlength="8" required class="w-full px-3.5 py-2.5 rounded-xl bg-slate-950 border border-slate-700 text-sm text-white focus:outline-none focus:border-[#00d2ff]" />
+            </div>
+            <button type="submit" class="w-full py-3 rounded-xl font-extrabold text-sm text-slate-950 bg-gradient-to-r from-[#00d2ff] to-[#10b981] hover:brightness-110 transition cursor-pointer">Hifadhi Mipangilio</button>
+          </form>
+        </div>
+
+        <div class="glass-panel rounded-2xl p-5 space-y-4 h-fit">
+          <h3 class="text-base font-extrabold text-white">Rudisha Mipangilio ya Awali</h3>
+          <p class="text-xs text-slate-400 leading-relaxed">
+            Ukibonyeza hapa, bidhaa zote za awali, slides za Dubai ("Okoa Hadi TZS 400,000/-"), na mipangilio ya <strong class="text-white">PRE ORDERS BY THETWINS</strong> zitarudishwa upya.
+          </p>
+          <button id="open-reset-confirm-btn" type="button" class="px-4 py-3 rounded-xl bg-amber-500/15 hover:bg-amber-500/25 border border-amber-500/40 text-amber-300 text-xs font-extrabold transition cursor-pointer">Rudisha Mipangilio ya Awali</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Custom Confirm -->
+  <div id="custom-confirm-modal" class="fixed inset-0 z-[70] hidden items-center justify-center p-4 bg-black/85 backdrop-blur-md">
+    <div class="w-full max-w-sm glass-panel rounded-3xl p-6 text-center space-y-4">
+      <h4 id="confirm-modal-title" class="text-base font-extrabold text-white">Thibitisha Kitendo</h4>
+      <p id="confirm-modal-text" class="text-xs text-slate-300 leading-relaxed">Una uhakika unataka kuendelea?</p>
+      <div class="flex gap-2.5">
+        <button id="confirm-cancel-btn" type="button" class="flex-1 py-2.5 rounded-xl bg-slate-900 border border-slate-700 text-xs font-bold text-slate-300 hover:text-white cursor-pointer">Hapana</button>
+        <button id="confirm-ok-btn" type="button" class="flex-1 py-2.5 rounded-xl bg-rose-600 hover:bg-rose-500 text-xs font-extrabold text-white cursor-pointer">Ndiyo, Endelea</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 6. JAVASCRIPT -->
+  <script>
+    (function () {
+      'use strict';
+
+      // ===== A. STORAGE KEYS & SEED DATA =====
+      const STORAGE_KEYS = {
+        USERS: 'thetwins_dubai_v4_users',
+        SESSION: 'thetwins_dubai_v4_session',
+        PRODUCTS: 'thetwins_dubai_v4_products',
+        MINI_OFFERS: 'thetwins_dubai_v4_mini_offers',
+        SLIDES: 'thetwins_dubai_v4_slides',
+        ORDERS: 'thetwins_dubai_v4_orders',
+        SETTINGS: 'thetwins_dubai_v4_settings'
+      };
+
+      const MAX_MINI_OFFERS = 5;
+
+      const DEFAULT_MINI_OFFERS = ['Mouse', 'Headphone', 'Smartwatch', 'iPad', 'iPods', 'Keyboard', 'Flash Disk', 'Laptop Stand', 'Bag', 'Phone Charger'];
+
+      const DEFAULT_SETTINGS = {
+        storeName: 'PRE ORDERS BY THETWINS',
+        whatsappNumber: '255684664950',
+        officeLocation: 'Mlimani City, Dar es Salaam',
+        adminPin: '1234'
+      };
+
+      const DEFAULT_SLIDES = [
+        {
+          id: 'slide-1',
+          tag: '🇦🇪 DUBAI DIRECT • OKOA HADI TZS 400,000/-',
+          title: 'Agiza Moja kwa Moja Kutoka Dubai — Okoa Hadi TZS 400,000/-',
+          subtitle: 'Simu, Laptop na Gaming Consoles mpya kabisa (Sealed Box) kutoka Dubai UAE hadi Tanzania ndani ya siku 3–5.',
+          image: 'https://images.unsplash.com/photo-1695048133142-1a20484d2569?auto=format&fit=crop&w=1400&q=80'
+        },
+        {
+          id: 'slide-2',
+          tag: 'MACBOOK PRO M4 • ZAWADI 4 BURE AUTOMATIC',
+          title: 'MacBook Pro M4 & UltraBooks za Kisasa Kutoka Dubai',
+          subtitle: 'Pata Mouse, Laptop Stand, Bag & Phone Charger bure moja kwa moja unapoweka pre-order yako.',
+          image: 'https://images.unsplash.com/photo-1517336714731-489689fd1ca8?auto=format&fit=crop&w=1400&q=80'
+        },
+        {
+          id: 'slide-3',
+          tag: 'NEXT-GEN GAMING • DUBAI EXPRESS',
+          title: 'PlayStation 5 Pro Console & Gaming Gear',
+          subtitle: 'Wahi Offer Mode kabla saa haijaisha! Bei inarudi bei halisia mara moja muda ukikamilika.',
+          image: 'https://images.unsplash.com/photo-1606144042614-b2417e99c4e3?auto=format&fit=crop&w=1400&q=80'
+        }
+      ];
+
+      function createSeedProducts() {
+        const now = Date.now();
+        return [
+          {
+            id: 'prod-1', name: 'iPhone 16 Pro Max 256GB', category: 'Simu',
+            specs: '256GB • Desert Titanium • Dubai UAE Sealed Box',
+            regularPrice: 3350000, offerPrice: 2950000,
+            offerEndTime: now + (6 * 3600 + 30 * 60) * 1000,
+            miniOfferMode: 'select5', autoMiniOffers: [],
+            image: 'https://images.unsplash.com/photo-1696446701796-da61225697cc?auto=format&fit=crop&w=800&q=80'
+          },
+          {
+            id: 'prod-2', name: 'Samsung Galaxy S25 Ultra', category: 'Simu',
+            specs: '512GB • Titanium Black • Galaxy AI • Dubai Stock',
+            regularPrice: 3150000, offerPrice: 2790000,
+            offerEndTime: now + (11 * 3600 + 15 * 60) * 1000,
+            miniOfferMode: 'select5', autoMiniOffers: [],
+            image: 'https://images.unsplash.com/photo-1610945415295-d9bbf067e59c?auto=format&fit=crop&w=800&q=80'
+          },
+          {
+            id: 'prod-3', name: 'MacBook Pro M4 14"', category: 'Laptop',
+            specs: '16GB RAM • 512GB SSD • Space Black • Apple Warranty',
+            regularPrice: 4550000, offerPrice: 4150000,
+            offerEndTime: now + (4 * 3600 + 45 * 60) * 1000,
+            miniOfferMode: 'auto', autoMiniOffers: ['Mouse', 'Laptop Stand', 'Bag', 'Phone Charger'],
+            image: 'https://images.unsplash.com/photo-1517336714731-489689fd1ca8?auto=format&fit=crop&w=800&q=80'
+          },
+          {
+            id: 'prod-4', name: 'PlayStation 5 Pro', category: 'Gaming',
+            specs: '2TB SSD • 4K 120Hz • Offer ya Majaribio (Sek 90)',
+            regularPrice: 2250000, offerPrice: 1950000,
+            offerEndTime: now + 90 * 1000,
+            miniOfferMode: 'select5', autoMiniOffers: [],
+            image: 'https://images.unsplash.com/photo-1606144042614-b2417e99c4e3?auto=format&fit=crop&w=800&q=80'
+          },
+          {
+            id: 'prod-5', name: 'AirPods Max USB-C', category: 'Accessories',
+            specs: 'Midnight • Lossless Audio • Active Noise Cancellation',
+            regularPrice: 1450000, offerPrice: 1290000,
+            offerEndTime: null, miniOfferMode: 'off', autoMiniOffers: [],
+            image: 'https://images.unsplash.com/photo-1613040809024-b4ef7ba99bc3?auto=format&fit=crop&w=800&q=80'
+          },
+          {
+            id: 'prod-6', name: 'iPad Pro M4 11"', category: 'Laptop',
+            specs: '256GB • Ultra Retina XDR OLED • Space Black',
+            regularPrice: 2850000, offerPrice: 2550000,
+            offerEndTime: now + (8 * 3600 + 20 * 60) * 1000,
+            miniOfferMode: 'auto', autoMiniOffers: ['Keyboard', 'Bag', 'Phone Charger'],
+            image: 'https://images.unsplash.com/photo-1544244015-0df4b3ffc6b0?auto=format&fit=crop&w=800&q=80'
+          }
+        ];
+      }
+
+      // ===== B. SAFE LOCALSTORAGE =====
+      function showToast(message, type = 'success') {
+        const container = document.getElementById('toast-container');
+        const toast = document.createElement('div');
+        const colors = type === 'error'
+          ? 'bg-rose-950/95 border-rose-500/60 text-rose-100'
+          : type === 'offer'
+          ? 'bg-amber-950/95 border-amber-500/60 text-amber-100'
+          : 'bg-slate-900/95 border-[#00d2ff]/60 text-cyan-100';
+
+        toast.className = `pointer-events-auto px-4 py-3 rounded-2xl border backdrop-blur-md shadow-xl text-xs font-semibold flex items-center gap-2.5 transition-all duration-300 ${colors}`;
+        toast.innerHTML = `
+          <span class="w-2 h-2 rounded-full ${type === 'error' ? 'bg-rose-400' : type === 'offer' ? 'bg-[#f59e0b]' : 'bg-[#00d2ff]'} shrink-0"></span>
+          <span>${escapeHtml(message)}</span>
+        `;
+        container.appendChild(toast);
+
+        setTimeout(() => {
+          toast.style.opacity = '0';
+          toast.style.transform = 'translateY(-8px)';
+          setTimeout(() => toast.remove(), 300);
+        }, 3400);
+      }
+
+      function readStorage(key, fallback) {
+        try {
+          const raw = localStorage.getItem(key);
+          if (!raw) return fallback;
+          const parsed = JSON.parse(raw);
+          return parsed !== null && parsed !== undefined ? parsed : fallback;
+        } catch (err) {
+          return fallback;
+        }
+      }
+
+      function writeStorage(key, value) {
+        try {
+          localStorage.setItem(key, JSON.stringify(value));
+        } catch (err) {
+          showToast('Hifadhi ya simu imejaa. Tumia picha ndogo au futa bidhaa/slides zisizotumika.', 'error');
+        }
+      }
+
+      try {
+        if (!localStorage.getItem(STORAGE_KEYS.PRODUCTS)) writeStorage(STORAGE_KEYS.PRODUCTS, createSeedProducts());
+        if (!localStorage.getItem(STORAGE_KEYS.MINI_OFFERS)) writeStorage(STORAGE_KEYS.MINI_OFFERS, DEFAULT_MINI_OFFERS);
+        if (!localStorage.getItem(STORAGE_KEYS.SLIDES)) writeStorage(STORAGE_KEYS.SLIDES, DEFAULT_SLIDES);
+        if (!localStorage.getItem(STORAGE_KEYS.SETTINGS)) writeStorage(STORAGE_KEYS.SETTINGS, DEFAULT_SETTINGS);
+      } catch (err) { /* storage unavailable */ }
+
+      const state = {
+        users: readStorage(STORAGE_KEYS.USERS, {}),
+        sessionPhone: readStorage(STORAGE_KEYS.SESSION, null),
+        products: readStorage(STORAGE_KEYS.PRODUCTS, createSeedProducts()),
+        miniOffers: readStorage(STORAGE_KEYS.MINI_OFFERS, [...DEFAULT_MINI_OFFERS]),
+        selectedMiniOffersByProduct: {},
+        slides: readStorage(STORAGE_KEYS.SLIDES, DEFAULT_SLIDES),
+        orders: readStorage(STORAGE_KEYS.ORDERS, []),
+        settings: { ...DEFAULT_SETTINGS, ...readStorage(STORAGE_KEYS.SETTINGS, DEFAULT_SETTINGS) },
+        activeCategory: 'Zote',
+        searchQuery: '',
+        currentSlideIndex: 0,
+        sliderTimer: null,
+        activeOrderProductId: null,
+        orderQuantity: 1,
+        uploadedProdImageUrl: '',
+        uploadedSlideImageUrl: ''
+      };
+
+      // ===== C. HELPERS =====
+      function formatTZS(amount) {
+        const num = Number(amount) || 0;
+        return 'TZS ' + num.toLocaleString('en-US');
+      }
+
+      function normalizePhone(raw) {
+        let digits = String(raw || '').replace(/[^\d+]/g, '');
+        if (digits.startsWith('0') && digits.length >= 10) {
+          digits = '+255' + digits.slice(1);
+        } else if (digits.startsWith('255') && !digits.startsWith('+')) {
+          digits = '+' + digits;
+        } else if (!digits.startsWith('+') && digits.length >= 9) {
+          digits = '+255' + digits;
+        }
+        return digits;
+      }
+
+      function escapeHtml(str) {
+        return String(str ?? '')
+          .replace(/&/g, '&amp;')
+          .replace(/</g, '&lt;')
+          .replace(/>/g, '&gt;')
+          .replace(/"/g, '&quot;')
+          .replace(/'/g, '&#39;');
+      }
+
+      function fallbackImage(label) {
+        const encoded = encodeURIComponent(label || 'PRE ORDERS BY THETWINS');
+        return `https://placehold.co/800x600/0f172a/00d2ff?text=${encoded}`;
+      }
+
+      // Picha inabadilishwa kuwa data URL (haipotei ukirefresh) na inapunguzwa ukubwa
+      function fileToDataUrl(file, maxW = 900) {
+        return new Promise((resolve, reject) => {
+          const reader = new FileReader();
+          reader.onerror = reject;
+          reader.onload = () => {
+            const img = new Image();
+            img.onload = () => {
+              const scale = Math.min(1, maxW / img.width);
+              const canvas = document.createElement('canvas');
+              canvas.width = Math.max(1, Math.round(img.width * scale));
+              canvas.height = Math.max(1, Math.round(img.height * scale));
+              canvas.getContext('2d').drawImage(img, 0, 0, canvas.width, canvas.height);
+              resolve(canvas.toDataURL('image/jpeg', 0.75));
+            };
+            img.onerror = reject;
+            img.src = reader.result;
+          };
+          reader.readAsDataURL(file);
+        });
+      }
+
+      function isOfferActive(product, now = Date.now()) {
+        if (!product || !product.offerEndTime) return false;
+        const end = Number(product.offerEndTime);
+        const reg = Number(product.regularPrice) || 0;
+        const off = Number(product.offerPrice) || 0;
+        return end > now && off > 0 && off < reg;
+      }
+
+      function getActivePrice(product, now = Date.now()) {
+        return isOfferActive(product, now) ? Number(product.offerPrice) : Number(product.regularPrice);
+      }
+
+      function formatCountdown(msRemaining) {
+        const totalSeconds = Math.max(0, Math.floor(msRemaining / 1000));
+        const days = Math.floor(totalSeconds / 86400);
+        const hours = Math.floor((totalSeconds % 86400) / 3600);
+        const minutes = Math.floor((totalSeconds % 3600) / 60);
+        const seconds = totalSeconds % 60;
+        const pad = (n) => String(n).padStart(2, '0');
+        if (days > 0) return `${days}Siku ${pad(hours)} : ${pad(minutes)} : ${pad(seconds)}`;
+        return `${pad(hours)} : ${pad(minutes)} : ${pad(seconds)}`;
+      }
+
+      function askConfirmation(title, text, onConfirm) {
+        const modal = document.getElementById('custom-confirm-modal');
+        document.getElementById('confirm-modal-title').textContent = title;
+        document.getElementById('confirm-modal-text').textContent = text;
+        modal.classList.remove('hidden');
+        modal.classList.add('flex');
+
+        const okBtn = document.getElementById('confirm-ok-btn');
+        const cancelBtn = document.getElementById('confirm-cancel-btn');
+
+        const cleanup = () => {
+          modal.classList.add('hidden');
+          modal.classList.remove('flex');
+          okBtn.onclick = null;
+          cancelBtn.onclick = null;
+        };
+
+        cancelBtn.onclick = cleanup;
+        okBtn.onclick = () => { cleanup(); onConfirm(); };
+      }
+
+      // ===== D. MINI OFFERS =====
+      function getProductMiniMode(product) {
+        const mode = product && product.miniOfferMode;
+        if (mode === 'auto' || mode === 'off') return mode;
+        return 'select5';
+      }
+
+      function getSelectedMiniOffers(productId) {
+        const rawList = state.selectedMiniOffersByProduct[productId] || [];
+        const valid = rawList.filter((item) => state.miniOffers.includes(item)).slice(0, MAX_MINI_OFFERS);
+        state.selectedMiniOffersByProduct[productId] = valid;
+        return valid;
+      }
+
+      function toggleMiniOfferSelection(productId, offerLabel) {
+        const current = getSelectedMiniOffers(productId);
+        const idx = current.indexOf(offerLabel);
+        if (idx !== -1) {
+          current.splice(idx, 1);
+        } else {
+          if (current.length >= MAX_MINI_OFFERS) {
+            showToast('Umeshachagua vibox 5! Ondoa kimoja kwanza ili kuchagua kingine.', 'error');
+            syncProductCardMiniOffersUI(productId);
+            return false;
+          }
+          current.push(offerLabel);
+        }
+        state.selectedMiniOffersByProduct[productId] = current;
+        syncProductCardMiniOffersUI(productId);
+        if (state.activeOrderProductId === productId) renderQuickOrderMiniOffers();
+        return true;
+      }
+
+      function buildMiniOfferBadgeContent(count) {
+        if (count >= MAX_MINI_OFFERS) {
+          return {
+            text: `${count}/${MAX_MINI_OFFERS} - Zimefika 5`,
+            classes: 'px-2 py-0.5 rounded-md text-[10px] font-extrabold bg-[#10b981]/20 text-emerald-300 border border-[#10b981]/45 tabular-timer'
+          };
+        }
+        return {
+          text: `${count}/${MAX_MINI_OFFERS}`,
+          classes: 'px-2 py-0.5 rounded-md text-[10px] font-extrabold bg-slate-900 text-[#00d2ff] border border-[#00d2ff]/30 tabular-timer'
+        };
+      }
+
+      function buildMiniOfferGridHTML(productId, scopeAttr) {
+        const selected = getSelectedMiniOffers(productId);
+        const limitReached = selected.length >= MAX_MINI_OFFERS;
+
+        return state.miniOffers.map((offerName) => {
+          const isChecked = selected.includes(offerName);
+          const isDisabled = !isChecked && limitReached;
+
+          return `
+            <label class="flex items-center gap-1.5 px-2 py-1.5 rounded-lg border text-[11px] select-none transition ${
+              isChecked
+                ? 'bg-[#00d2ff]/15 border-[#00d2ff]/55 text-white font-bold cursor-pointer'
+                : isDisabled
+                ? 'bg-slate-950/40 border-slate-800/60 text-slate-500 opacity-40 cursor-not-allowed'
+                : 'bg-slate-950/75 border-slate-800 hover:border-slate-600 text-slate-300 cursor-pointer'
+            }">
+              <input type="checkbox" ${scopeAttr}="${escapeHtml(productId)}" value="${escapeHtml(offerName)}" ${isChecked ? 'checked' : ''} ${isDisabled ? 'disabled' : ''} class="mini-offer-check w-3.5 h-3.5 rounded border-slate-600 bg-slate-900 shrink-0 ${isDisabled ? 'cursor-not-allowed' : 'cursor-pointer'}" />
+              <span class="truncate">${escapeHtml(offerName)}</span>
+            </label>
+          `;
+        }).join('');
+      }
+
+      function syncProductCardMiniOffersUI(productId) {
+        const selected = getSelectedMiniOffers(productId);
+        const badgeEl = document.querySelector(`[data-mini-counter-for="${CSS.escape(productId)}"]`);
+        const gridEl = document.querySelector(`[data-mini-grid-for="${CSS.escape(productId)}"]`);
+        if (badgeEl) {
+          const badge = buildMiniOfferBadgeContent(selected.length);
+          badgeEl.textContent = badge.text;
+          badgeEl.className = badge.classes;
+        }
+        if (gridEl) gridEl.innerHTML = buildMiniOfferGridHTML(productId, 'data-mini-offer-prod');
+      }
+
+      function renderProductMiniOfferSection(product) {
+        const mode = getProductMiniMode(product);
+        if (mode === 'off') return '';
+
+        if (mode === 'auto') {
+          const autoItems = Array.isArray(product.autoMiniOffers) && product.autoMiniOffers.length
+            ? product.autoMiniOffers
+            : ['Mouse', 'Phone Charger'];
+
+          return `
+            <div class="p-3 rounded-xl bg-[#10b981]/10 border border-[#10b981]/35 space-y-2">
+              <div class="flex items-center justify-between gap-1.5">
+                <span class="text-[10px] font-extrabold text-emerald-300 uppercase tracking-wide flex items-center gap-1">
+                  <svg class="w-3.5 h-3.5 text-[#10b981]" fill="none" stroke="currentColor" stroke-width="2.4" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" /></svg>
+                  <span>Offer Ndogondogo (Automatic Bure)</span>
+                </span>
+                <span class="px-2 py-0.5 rounded-md text-[10px] font-extrabold bg-[#10b981]/20 text-emerald-200 border border-[#10b981]/40">Zimejumuishwa (${autoItems.length})</span>
+              </div>
+              <div class="flex flex-wrap gap-1.5">
+                ${autoItems.map((item) => `
+                  <span class="inline-flex items-center gap-1 px-2 py-1 rounded-lg bg-slate-950/85 border border-[#10b981]/35 text-[11px] font-bold text-emerald-200">
+                    <span class="text-[#10b981]">✓</span><span>${escapeHtml(item)}</span>
+                  </span>
+                `).join('')}
+              </div>
+            </div>
+          `;
+        }
+
+        const chosen = getSelectedMiniOffers(product.id);
+        const badge = buildMiniOfferBadgeContent(chosen.length);
+
+        return `
+          <div class="p-2.5 rounded-xl bg-slate-950/85 border border-slate-800/95 space-y-2">
+            <div class="flex items-center justify-between gap-1.5">
+              <span class="text-[10px] font-extrabold text-cyan-200 uppercase tracking-wide">Chagua Offer Ndogondogo (5 Tu)</span>
+              <span data-mini-counter-for="${escapeHtml(product.id)}" class="${badge.classes}">${badge.text}</span>
+            </div>
+            <div data-mini-grid-for="${escapeHtml(product.id)}" class="grid grid-cols-2 gap-1.5">
+              ${buildMiniOfferGridHTML(product.id, 'data-mini-offer-prod')}
+            </div>
+          </div>
+        `;
+      }
+
+      // ===== E. BRANDING & AUTH =====
+      function applyBranding() {
+        const storeName = state.settings.storeName || 'PRE ORDERS BY THETWINS';
+        const cleanWa = normalizePhone(state.settings.whatsappNumber || '255684664950').replace(/^\+/, '');
+        const officeLoc = state.settings.officeLocation || 'Mlimani City, Dar es Salaam';
+
+        document.title = `${storeName} — Dubai Electronics Pre-Order`;
+        document.getElementById('auth-store-title').textContent = storeName;
+        document.getElementById('header-store-name').textContent = storeName;
+        document.getElementById('footer-store-name').textContent = storeName;
+        document.getElementById('admin-panel-store-title').textContent = `${storeName} — Admin`;
+        document.getElementById('auth-wa-display').textContent = `WhatsApp: +${cleanWa}`;
+        document.getElementById('qo-office-location-sub').textContent = `Kupokea Ofisini — ${officeLoc}`;
+
+        const footerWa = document.getElementById('footer-wa-link');
+        footerWa.href = `https://wa.me/${cleanWa}`;
+        footerWa.textContent = `+${cleanWa}`;
+      }
+
+      function updateAuthUI() {
+        const authGate = document.getElementById('auth-gate');
+        const phonePill = document.getElementById('user-phone-pill');
+        const headerPhone = document.getElementById('header-user-phone');
+
+        if (state.sessionPhone) {
+          authGate.classList.add('hidden');
+          phonePill.classList.remove('hidden');
+          phonePill.classList.add('flex');
+          headerPhone.textContent = state.sessionPhone;
+        } else {
+          const savedPhones = Object.keys(state.users || {});
+          const savedBox = document.getElementById('saved-device-account-box');
+          if (savedPhones.length > 0) {
+            const latestPhone = savedPhones[savedPhones.length - 1];
+            document.getElementById('saved-device-phone-label').textContent = latestPhone;
+            savedBox.classList.remove('hidden');
+            savedBox.dataset.quickPhone = latestPhone;
+          } else {
+            savedBox.classList.add('hidden');
+          }
+
+          authGate.classList.remove('hidden');
+          phonePill.classList.add('hidden');
+          phonePill.classList.remove('flex');
+        }
+      }
+
+      document.getElementById('one-tap-login-btn').addEventListener('click', () => {
+        const quickPhone = document.getElementById('saved-device-account-box').dataset.quickPhone;
+        if (!quickPhone || !state.users[quickPhone]) return;
+        state.sessionPhone = quickPhone;
+        writeStorage(STORAGE_KEYS.SESSION, quickPhone);
+        updateAuthUI();
+        showToast(`Karibu tena, ${quickPhone}!`);
+      });
+
+      document.getElementById('toggle-password-btn').addEventListener('click', () => {
+        const pwdInput = document.getElementById('auth-password');
+        pwdInput.type = pwdInput.type === 'password' ? 'text' : 'password';
+      });
+
+      document.getElementById('auth-form').addEventListener('submit', (e) => {
+        e.preventDefault();
+        const rawPhone = document.getElementById('auth-phone').value.trim();
+        const password = document.getElementById('auth-password').value;
+        const errorBox = document.getElementById('auth-error-msg');
+        errorBox.classList.add('hidden');
+
+        const phone = normalizePhone(rawPhone);
+        if (phone.length < 12) {
+          errorBox.textContent = 'Tafadhali weka namba sahihi ya simu (mfano: 0712345678 au 0684664950).';
+          errorBox.classList.remove('hidden');
+          return;
+        }
+        if (password.length < 4) {
+          errorBox.textContent = 'Password inapaswa kuwa na angalau herufi au namba 4.';
+          errorBox.classList.remove('hidden');
+          return;
+        }
+
+        const existingUser = state.users[phone];
+        if (existingUser) {
+          if (existingUser.password !== password) {
+            errorBox.textContent = 'Password si sahihi kwa namba hii. Jaribu tena.';
+            errorBox.classList.remove('hidden');
+            return;
+          }
+          showToast(`Karibu tena, ${phone}!`);
+        } else {
+          state.users[phone] = { phone, password, createdAt: new Date().toISOString() };
+          writeStorage(STORAGE_KEYS.USERS, state.users);
+          showToast(`Taarifa zimehifadhiwa kwenye simu yako (${phone})!`);
+        }
+
+        state.sessionPhone = phone;
+        writeStorage(STORAGE_KEYS.SESSION, phone);
+        document.getElementById('auth-form').reset();
+        updateAuthUI();
+      });
+
+      document.getElementById('logout-btn').addEventListener('click', () => {
+        state.sessionPhone = null;
+        try { localStorage.removeItem(STORAGE_KEYS.SESSION); } catch (err) {}
+        updateAuthUI();
+        showToast('Umetoka kwenye akaunti.');
+      });
+
+      // ===== F. HERO SLIDER (fade laini bila kujenga upya HTML) =====
+      function renderHeroSlider() {
+        const track = document.getElementById('hero-slider-track');
+        const dotsContainer = document.getElementById('slider-dots');
+
+        if (!state.slides.length) {
+          track.innerHTML = '';
+          dotsContainer.innerHTML = '';
+          return;
+        }
+
+        if (state.currentSlideIndex >= state.slides.length) state.currentSlideIndex = 0;
+
+        track.innerHTML = state.slides.map((slide, idx) => {
+          const isActive = idx === state.currentSlideIndex;
+          return `
+            <div class="absolute inset-0 transition-opacity duration-700 ${isActive ? 'opacity-100 z-10' : 'opacity-0 z-0 pointer-events-none'}">
+              <img src="${escapeHtml(slide.image)}" alt="${escapeHtml(slide.title)}" onerror="this.onerror=null;this.src='${fallbackImage(slide.tag)}';" class="w-full h-full object-cover object-center" />
+              <div class="absolute inset-0 bg-gradient-to-r from-[#070b14]/97 via-[#070b14]/82 to-[#070b14]/30"></div>
+              <div class="absolute inset-0 flex flex-col justify-center px-6 sm:px-14 max-w-3xl">
+                <span class="inline-flex items-center gap-1.5 w-fit px-3 py-1 rounded-full bg-[#f59e0b]/20 border border-[#f59e0b]/50 text-amber-300 text-[10px] sm:text-xs font-extrabold uppercase tracking-wider mb-2.5">
+                  <span class="w-1.5 h-1.5 rounded-full bg-[#f59e0b] animate-ping"></span>
+                  ${escapeHtml(slide.tag)}
+                </span>
+                <h2 class="text-xl sm:text-3xl md:text-4xl font-black text-white leading-tight">${escapeHtml(slide.title)}</h2>
+                <p class="text-xs sm:text-sm text-slate-300 mt-2 line-clamp-2 max-w-xl">${escapeHtml(slide.subtitle)}</p>
+
+                <div class="flex flex-wrap items-center gap-2 mt-3.5 text-[10px] sm:text-xs font-bold">
+                  <span class="px-2.5 py-1 rounded-lg bg-[#00d2ff]/15 border border-[#00d2ff]/35 text-[#00d2ff]">🇦🇪 Dubai Direct Sourcing</span>
+                  <span class="px-2.5 py-1 rounded-lg bg-[#10b981]/15 border border-[#10b981]/35 text-[#10b981]">✓ Warranty Kamili</span>
+                  <span class="px-2.5 py-1 rounded-lg bg-slate-900/90 border border-slate-700 text-slate-200">🔒 Malipo Salama</span>
+                </div>
+
+                <div class="mt-4">
+                  <a href="#catalog-section" class="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-gradient-to-r from-[#00d2ff] to-[#10b981] text-slate-950 font-extrabold text-xs sm:text-sm shadow-lg shadow-[#00d2ff]/25 hover:brightness-110 transition">
+                    <span>Chagua Bidhaa & Okoa Sasa</span>
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" /></svg>
+                  </a>
+                </div>
+              </div>
+            </div>
+          `;
+        }).join('');
+
+        dotsContainer.innerHTML = state.slides.map((_, idx) => {
+          const isActive = idx === state.currentSlideIndex;
+          return `<button type="button" data-slide-dot="${idx}" aria-label="Slide ${idx + 1}" class="h-2 rounded-full transition-all cursor-pointer ${isActive ? 'w-6 bg-[#00d2ff]' : 'w-2 bg-slate-500 hover:bg-slate-300'}"></button>`;
+        }).join('');
+      }
+
+      // Inabadilisha madarasa tu (haijengi upya HTML) ili fade ifanye kazi na picha zisipakie upya
+      function showSlide(i) {
+        state.currentSlideIndex = i;
+        document.querySelectorAll('#hero-slider-track > div').forEach((el, idx) => {
+          const active = idx === i;
+          el.classList.toggle('opacity-100', active);
+          el.classList.toggle('z-10', active);
+          el.classList.toggle('opacity-0', !active);
+          el.classList.toggle('z-0', !active);
+          el.classList.toggle('pointer-events-none', !active);
+        });
+        document.querySelectorAll('#slider-dots button').forEach((d, idx) => {
+          const active = idx === i;
+          d.classList.toggle('w-6', active);
+          d.classList.toggle('bg-[#00d2ff]', active);
+          d.classList.toggle('w-2', !active);
+          d.classList.toggle('bg-slate-500', !active);
+        });
+      }
+
+      function nextSlide() {
+        if (state.slides.length) showSlide((state.currentSlideIndex + 1) % state.slides.length);
+      }
+
+      function prevSlide() {
+        if (state.slides.length) showSlide((state.currentSlideIndex - 1 + state.slides.length) % state.slides.length);
+      }
+
+      function restartSliderAutoPlay() {
+        if (state.sliderTimer) clearInterval(state.sliderTimer);
+        state.sliderTimer = setInterval(nextSlide, 4000);
+      }
+
+      document.getElementById('slider-next-btn').addEventListener('click', () => { nextSlide(); restartSliderAutoPlay(); });
+      document.getElementById('slider-prev-btn').addEventListener('click', () => { prevSlide(); restartSliderAutoPlay(); });
+
+      document.getElementById('slider-dots').addEventListener('click', (e) => {
+        const dot = e.target.closest('[data-slide-dot]');
+        if (!dot) return;
+        showSlide(Number(dot.dataset.slideDot));
+        restartSliderAutoPlay();
+      });
+
+      // ===== G. PRODUCTS GRID & COUNTDOWN =====
+      function updateOfferSummaryBadge() {
+        const now = Date.now();
+        const activeCount = state.products.filter((p) => isOfferActive(p, now)).length;
+        document.getElementById('active-offers-summary').textContent = `Ofa Zinazoendelea: ${activeCount}`;
+      }
+
+      function renderProducts() {
+        const grid = document.getElementById('products-grid');
+        const emptyState = document.getElementById('empty-products-state');
+        const countLabel = document.getElementById('catalog-count-label');
+        const now = Date.now();
+
+        const query = state.searchQuery.toLowerCase().trim();
+        const filtered = state.products.filter((prod) => {
+          const matchesCat = state.activeCategory === 'Zote' || prod.category === state.activeCategory;
+          const matchesQuery = !query ||
+            prod.name.toLowerCase().includes(query) ||
+            prod.specs.toLowerCase().includes(query) ||
+            prod.category.toLowerCase().includes(query);
+          return matchesCat && matchesQuery;
+        });
+
+        updateOfferSummaryBadge();
+        countLabel.textContent = `Inaonyesha bidhaa ${filtered.length} kati ya ${state.products.length}`;
+
+        if (filtered.length === 0) {
+          grid.innerHTML = '';
+          emptyState.classList.remove('hidden');
+          return;
+        }
+
+        emptyState.classList.add('hidden');
+
+        grid.innerHTML = filtered.map((product) => {
+          const offerOn = isOfferActive(product, now);
+          const remainingMs = offerOn ? Math.max(0, Number(product.offerEndTime) - now) : 0;
+          const savingsAmount = offerOn ? Math.max(0, Number(product.regularPrice) - Number(product.offerPrice)) : 0;
+
+          return `
+            <article data-product-card="${escapeHtml(product.id)}" class="glass-card ${offerOn ? 'offer-active-card' : ''} rounded-2xl overflow-hidden flex flex-col justify-between group">
+              <div>
+                <div class="relative h-48 bg-slate-950 overflow-hidden">
+                  <img src="${escapeHtml(product.image)}" alt="${escapeHtml(product.name)}" loading="lazy" onerror="this.onerror=null;this.src='${fallbackImage(product.name)}';" class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500" />
+                  <div class="absolute inset-0 bg-gradient-to-t from-[#070b14] via-transparent to-transparent opacity-80"></div>
+
+                  <div class="absolute top-3 left-3">
+                    <span class="px-2.5 py-1 rounded-lg bg-slate-950/85 backdrop-blur-md border border-[#00d2ff]/35 text-[11px] font-bold text-[#00d2ff]">${escapeHtml(product.category)}</span>
+                  </div>
+
+                  <div class="absolute top-3 right-3">
+                    ${offerOn ? `
+                      <span class="offer-badge-glow inline-flex items-center gap-1 px-2.5 py-1 rounded-lg bg-gradient-to-r from-[#f59e0b] to-orange-600 text-slate-950 text-[10px] font-black uppercase tracking-wider shadow-lg">
+                        <span>OFFER</span>
+                        ${savingsAmount > 0 ? `<span class="bg-black/20 text-white px-1 rounded">Okoa ${formatTZS(savingsAmount)}</span>` : ''}
+                      </span>
+                    ` : `
+                      <span class="inline-block px-2.5 py-1 rounded-lg bg-slate-900/90 border border-slate-700 text-slate-300 text-[10px] font-bold uppercase tracking-wider">Bei Halisia</span>
+                    `}
+                  </div>
+                </div>
+
+                <div class="p-4 pb-2">
+                  <h3 class="font-extrabold text-base text-white group-hover:text-[#00d2ff] transition line-clamp-1">${escapeHtml(product.name)}</h3>
+                  <p class="text-xs text-slate-400 mt-1 line-clamp-1">${escapeHtml(product.specs)}</p>
+                </div>
+              </div>
+
+              <div class="px-4 pb-4 pt-2 space-y-3">
+                <div>
+                  ${offerOn ? `
+                    <div class="flex items-center gap-2">
+                      <span class="text-[10px] uppercase tracking-wider font-extrabold text-[#f59e0b]">Bei ya Offer</span>
+                      <span class="text-xs text-slate-500 line-through font-medium">${formatTZS(product.regularPrice)}</span>
+                    </div>
+                    <div class="text-lg font-black text-[#10b981] leading-tight mt-0.5">${formatTZS(product.offerPrice)}</div>
+                  ` : `
+                    <span class="block text-[10px] uppercase tracking-wider text-slate-400 font-semibold">Bei Halisia</span>
+                    <div class="text-lg font-black text-[#00d2ff] leading-tight mt-0.5">${formatTZS(product.regularPrice)}</div>
+                  `}
+                </div>
+
+                ${offerOn ? `
+                  <div class="px-3 py-2 rounded-xl bg-[#f59e0b]/15 border border-[#f59e0b]/45 flex items-center justify-between gap-2">
+                    <span class="text-[10px] font-bold uppercase tracking-wider text-amber-300 flex items-center gap-1">
+                      <svg class="w-3.5 h-3.5 text-[#f59e0b]" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+                      <span>Muda Uliobaki:</span>
+                    </span>
+                    <span data-countdown-for="${escapeHtml(product.id)}" class="text-xs sm:text-sm font-black text-white tabular-timer tracking-wider">${formatCountdown(remainingMs)}</span>
+                  </div>
+                ` : ''}
+
+                ${renderProductMiniOfferSection(product)}
+
+                <button type="button" data-order-product="${escapeHtml(product.id)}" class="w-full py-2.5 px-4 rounded-xl ${offerOn ? 'bg-gradient-to-r from-[#f59e0b] to-amber-500 text-slate-950 shadow-[#f59e0b]/25' : 'bg-gradient-to-r from-[#00d2ff] to-[#10b981] text-slate-950 shadow-[#00d2ff]/20'} hover:brightness-110 font-extrabold text-xs sm:text-sm transition-all active:scale-[0.98] flex items-center justify-center gap-2 shadow-lg cursor-pointer">
+                  <span>Agiza Sasa</span>
+                  <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3" /></svg>
+                </button>
+              </div>
+            </article>
+          `;
+        }).join('');
+      }
+
+      function tickOfferTimers() {
+        const now = Date.now();
+        let anyExpired = false;
+
+        state.products.forEach((product) => {
+          if (product.offerEndTime && Number(product.offerEndTime) <= now) {
+            product.offerEndTime = null;
+            anyExpired = true;
+            showToast(`Muda wa offer wa ${product.name} umeisha! Imerudi kwenye Bei Halisia.`, 'offer');
+          }
+        });
+
+        if (anyExpired) {
+          writeStorage(STORAGE_KEYS.PRODUCTS, state.products);
+          renderProducts();
+          renderAdminProducts();
+          refreshQuickOrderModalIfOpen();
+          return;
+        }
+
+        document.querySelectorAll('[data-countdown-for]').forEach((el) => {
+          const prodId = el.dataset.countdownFor;
+          const product = state.products.find((p) => p.id === prodId);
+          if (product && isOfferActive(product, now)) {
+            el.textContent = formatCountdown(Number(product.offerEndTime) - now);
+          }
+        });
+
+        if (state.activeOrderProductId) {
+          const prod = state.products.find((p) => p.id === state.activeOrderProductId);
+          const pill = document.getElementById('qo-live-timer-pill');
+          if (prod && isOfferActive(prod, now) && pill) {
+            pill.textContent = formatCountdown(Number(prod.offerEndTime) - now);
+          }
+        }
+      }
+
+      setInterval(tickOfferTimers, 1000);
+
+      // ===== H. SEARCH & CATEGORY =====
+      const searchInput = document.getElementById('search-input');
+      const clearSearchBtn = document.getElementById('clear-search-btn');
+
+      const PILL_ACTIVE = 'cat-pill px-4 py-2.5 rounded-xl text-xs sm:text-sm font-bold whitespace-nowrap transition cursor-pointer bg-gradient-to-r from-[#00d2ff] to-[#10b981] text-slate-950 shadow-md shadow-[#00d2ff]/20';
+      const PILL_IDLE = 'cat-pill px-4 py-2.5 rounded-xl text-xs sm:text-sm font-semibold whitespace-nowrap transition cursor-pointer bg-slate-900/90 text-slate-300 border border-slate-700/80 hover:border-[#00d2ff]/40';
+
+      searchInput.addEventListener('input', () => {
+        state.searchQuery = searchInput.value;
+        clearSearchBtn.classList.toggle('hidden', !state.searchQuery);
+        renderProducts();
+      });
+
+      clearSearchBtn.addEventListener('click', () => {
+        state.searchQuery = '';
+        searchInput.value = '';
+        clearSearchBtn.classList.add('hidden');
+        renderProducts();
+      });
+
+      document.getElementById('category-pills').addEventListener('click', (e) => {
+        const pill = e.target.closest('.cat-pill');
+        if (!pill) return;
+        state.activeCategory = pill.dataset.category;
+        document.querySelectorAll('.cat-pill').forEach((btn) => {
+          btn.className = btn.dataset.category === state.activeCategory ? PILL_ACTIVE : PILL_IDLE;
+        });
+        renderProducts();
+      });
+
+      document.getElementById('reset-filters-btn').addEventListener('click', () => {
+        state.searchQuery = '';
+        state.activeCategory = 'Zote';
+        searchInput.value = '';
+        clearSearchBtn.classList.add('hidden');
+        document.querySelectorAll('.cat-pill').forEach((btn) => {
+          btn.className = btn.dataset.category === 'Zote' ? PILL_ACTIVE : PILL_IDLE;
+        });
+        renderProducts();
+      });
+
+      // ===== I. CHECKOUT -> WHATSAPP =====
+      const quickOrderModal = document.getElementById('quick-order-modal');
+
+      function updateDeliveryModeCardsUI() {
+        const selectedMode = document.querySelector('input[name="deliveryMode"]:checked')?.value || 'office';
+        const officeCard = document.getElementById('delivery-card-office');
+        const doorCard = document.getElementById('delivery-card-door');
+        const addressWrapper = document.getElementById('qo-delivery-address-wrapper');
+        const addressInput = document.getElementById('qo-delivery-address');
+
+        if (selectedMode === 'delivery') {
+          officeCard.className = 'p-3 rounded-2xl bg-slate-950/90 border border-slate-700/80 hover:border-slate-600 cursor-pointer transition flex items-start gap-2.5';
+          doorCard.className = 'p-3 rounded-2xl bg-slate-950/90 border-2 border-[#f59e0b] cursor-pointer transition flex items-start gap-2.5';
+          addressWrapper.classList.remove('hidden');
+          addressInput.required = true;
+        } else {
+          officeCard.className = 'p-3 rounded-2xl bg-slate-950/90 border-2 border-[#00d2ff] cursor-pointer transition flex items-start gap-2.5';
+          doorCard.className = 'p-3 rounded-2xl bg-slate-950/90 border border-slate-700/80 hover:border-slate-600 cursor-pointer transition flex items-start gap-2.5';
+          addressWrapper.classList.add('hidden');
+          addressInput.required = false;
+        }
+      }
+
+      document.querySelectorAll('input[name="deliveryMode"]').forEach((radio) => {
+        radio.addEventListener('change', updateDeliveryModeCardsUI);
+      });
+
+      function renderQuickOrderMiniOffers() {
+        const wrapper = document.getElementById('qo-mini-offers-wrapper');
+        if (!state.activeOrderProductId || !wrapper) return;
+
+        const product = state.products.find((p) => p.id === state.activeOrderProductId);
+        if (!product) return;
+
+        const mode = getProductMiniMode(product);
+        if (mode === 'off') {
+          wrapper.classList.add('hidden');
+          wrapper.innerHTML = '';
+          return;
+        }
+
+        wrapper.classList.remove('hidden');
+
+        if (mode === 'auto') {
+          const autoItems = Array.isArray(product.autoMiniOffers) && product.autoMiniOffers.length
+            ? product.autoMiniOffers
+            : ['Mouse', 'Phone Charger'];
+
+          wrapper.innerHTML = `
+            <div class="flex items-center justify-between gap-2">
+              <span class="text-[11px] font-extrabold text-emerald-300 uppercase tracking-wide">Offer Ndogondogo Zilizojumuishwa (Automatic)</span>
+              <span class="px-2 py-0.5 rounded-md text-[10px] font-extrabold bg-[#10b981]/20 text-emerald-200 border border-[#10b981]/40">${autoItems.length} Bure</span>
+            </div>
+            <div class="flex flex-wrap gap-1.5 pt-1">
+              ${autoItems.map((item) => `
+                <span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-lg bg-slate-950 border border-[#10b981]/40 text-xs font-bold text-emerald-200">
+                  <span class="text-[#10b981]">✓</span><span>${escapeHtml(item)}</span>
+                </span>
+              `).join('')}
+            </div>
+          `;
+          return;
+        }
+
+        const selected = getSelectedMiniOffers(product.id);
+        const badge = buildMiniOfferBadgeContent(selected.length);
+        wrapper.innerHTML = `
+          <div class="flex items-center justify-between gap-2">
+            <span class="text-[11px] font-extrabold text-cyan-200 uppercase tracking-wide">Offer Ndogondogo (Chagua 5 Tu)</span>
+            <span class="${badge.classes}">${badge.text}</span>
+          </div>
+          <div id="qo-mini-offers-grid" class="grid grid-cols-2 gap-1.5 max-h-36 overflow-y-auto pr-0.5">
+            ${buildMiniOfferGridHTML(product.id, 'data-qo-mini-offer')}
+          </div>
+        `;
+      }
+
+      function refreshQuickOrderModalIfOpen() {
+        if (!state.activeOrderProductId) return;
+        const product = state.products.find((p) => p.id === state.activeOrderProductId);
+        if (!product) {
+          closeQuickOrderModal();
+          return;
+        }
+
+        const now = Date.now();
+        const offerOn = isOfferActive(product, now);
+        const unitPrice = getActivePrice(product, now);
+
+        const img = document.getElementById('qo-image');
+        img.onerror = () => { img.onerror = null; img.src = fallbackImage(product.name); };
+        img.src = product.image;
+
+        const badge = document.getElementById('qo-mode-badge');
+        const timerPill = document.getElementById('qo-live-timer-pill');
+        const oldPriceEl = document.getElementById('qo-old-price');
+        const modeNote = document.getElementById('qo-price-mode-note');
+        const topBar = document.getElementById('qo-top-bar');
+
+        if (offerOn) {
+          badge.textContent = 'BEI YA OFFER';
+          badge.className = 'inline-block px-2 py-0.5 rounded-md bg-[#f59e0b]/20 border border-[#f59e0b]/50 text-amber-300 text-[10px] font-black uppercase tracking-wider';
+          timerPill.classList.remove('hidden');
+          timerPill.textContent = formatCountdown(Number(product.offerEndTime) - now);
+          oldPriceEl.textContent = formatTZS(product.regularPrice);
+          oldPriceEl.classList.remove('hidden');
+          modeNote.textContent = 'Umewahi Offer Mode!';
+          modeNote.className = 'text-[11px] font-semibold text-amber-300';
+          topBar.className = 'absolute top-0 inset-x-0 h-1.5 bg-gradient-to-r from-[#f59e0b] via-orange-500 to-[#f59e0b]';
+        } else {
+          badge.textContent = 'BEI HALISIA';
+          badge.className = 'inline-block px-2 py-0.5 rounded-md bg-[#00d2ff]/15 border border-[#00d2ff]/35 text-[#00d2ff] text-[10px] font-extrabold uppercase tracking-wider';
+          timerPill.classList.add('hidden');
+          oldPriceEl.classList.add('hidden');
+          modeNote.textContent = 'Kwa bei halisia';
+          modeNote.className = 'text-[11px] text-slate-400';
+          topBar.className = 'absolute top-0 inset-x-0 h-1.5 bg-gradient-to-r from-[#00d2ff] via-[#10b981] to-[#00d2ff]';
+        }
+
+        document.getElementById('qo-name').textContent = product.name;
+        document.getElementById('qo-unit-price').textContent = `${formatTZS(unitPrice)} / moja`;
+        document.getElementById('qo-qty-display').textContent = state.orderQuantity;
+        document.getElementById('qo-total-price').textContent = formatTZS(unitPrice * state.orderQuantity);
+        renderQuickOrderMiniOffers();
+      }
+
+      function openQuickOrderModal(productId) {
+        const product = state.products.find((p) => p.id === productId);
+        if (!product) return;
+
+        state.activeOrderProductId = productId;
+        state.orderQuantity = 1;
+
+        document.getElementById('qo-error-msg').classList.add('hidden');
+        document.getElementById('qo-customer-phone-input').value = state.sessionPhone || '';
+        document.getElementById('qo-office-location-sub').textContent = `Kupokea Ofisini — ${state.settings.officeLocation || 'Mlimani City, Dar es Salaam'}`;
+
+        const officeRadio = document.querySelector('input[name="deliveryMode"][value="office"]');
+        if (officeRadio) officeRadio.checked = true;
+        document.getElementById('qo-delivery-address').value = '';
+        document.getElementById('qo-note').value = '';
+        updateDeliveryModeCardsUI();
+
+        refreshQuickOrderModalIfOpen();
+        quickOrderModal.classList.remove('hidden');
+        quickOrderModal.classList.add('flex');
+      }
+
+      function closeQuickOrderModal() {
+        quickOrderModal.classList.add('hidden');
+        quickOrderModal.classList.remove('flex');
+        state.activeOrderProductId = null;
+      }
+
+      document.getElementById('products-grid').addEventListener('click', (e) => {
+        const btn = e.target.closest('[data-order-product]');
+        if (!btn) return;
+        openQuickOrderModal(btn.dataset.orderProduct);
+      });
+
+      document.getElementById('products-grid').addEventListener('change', (e) => {
+        const checkbox = e.target.closest('[data-mini-offer-prod]');
+        if (!checkbox) return;
+        toggleMiniOfferSelection(checkbox.dataset.miniOfferProd, checkbox.value);
+      });
+
+      document.getElementById('qo-mini-offers-wrapper').addEventListener('change', (e) => {
+        const checkbox = e.target.closest('[data-qo-mini-offer]');
+        if (!checkbox) return;
+        toggleMiniOfferSelection(checkbox.dataset.qoMiniOffer, checkbox.value);
+      });
+
+      document.getElementById('close-qo-btn').addEventListener('click', closeQuickOrderModal);
+
+      document.getElementById('qo-qty-minus').addEventListener('click', () => {
+        if (state.orderQuantity > 1) {
+          state.orderQuantity -= 1;
+          refreshQuickOrderModalIfOpen();
+        }
+      });
+
+      document.getElementById('qo-qty-plus').addEventListener('click', () => {
+        state.orderQuantity += 1;
+        refreshQuickOrderModalIfOpen();
+      });
+
+      document.getElementById('checkout-order-form').addEventListener('submit', (e) => {
+        e.preventDefault();
+        if (!state.activeOrderProductId) return;
+
+        const product = state.products.find((p) => p.id === state.activeOrderProductId);
+        if (!product) return;
+
+        const errorBox = document.getElementById('qo-error-msg');
+        errorBox.classList.add('hidden');
+
+        const customerName = document.getElementById('qo-customer-name').value.trim();
+        const customerPhone = normalizePhone(document.getElementById('qo-customer-phone-input').value.trim());
+        const region = document.getElementById('qo-region-select').value;
+        const deliveryMode = document.querySelector('input[name="deliveryMode"]:checked')?.value || 'office';
+        const deliveryAddress = document.getElementById('qo-delivery-address').value.trim();
+        const extraNotes = document.getElementById('qo-note').value.trim() || 'Hakuna maelezo ya ziada';
+
+        if (!customerName) {
+          errorBox.textContent = 'Tafadhali jaza Jina Kamili la Mteja.';
+          errorBox.classList.remove('hidden');
+          return;
+        }
+        if (customerPhone.length < 12) {
+          errorBox.textContent = 'Tafadhali weka Namba sahihi ya Simu.';
+          errorBox.classList.remove('hidden');
+          return;
+        }
+        if (!region) {
+          errorBox.textContent = 'Tafadhali chagua Mkoa wako.';
+          errorBox.classList.remove('hidden');
+          return;
+        }
+        if (deliveryMode === 'delivery' && !deliveryAddress) {
+          errorBox.textContent = 'Tafadhali jaza Wilaya / Mtaa / Mahali Halisi pa Kufikishiwa.';
+          errorBox.classList.remove('hidden');
+          return;
+        }
+
+        const now = Date.now();
+        const offerOn = isOfferActive(product, now);
+        const unitPrice = getActivePrice(product, now);
+        const priceModeLabel = offerOn ? 'Bei ya Offer' : 'Bei Halisia';
+        const total = unitPrice * state.orderQuantity;
+
+        const officeLoc = state.settings.officeLocation || 'Mlimani City, Dar es Salaam';
+        const deliveryLabel = deliveryMode === 'office'
+          ? `Anapokelea Ofisini (${officeLoc})`
+          : `Anahitaji Afikishiwe Hadi Alipo (${deliveryAddress})`;
+
+        const miniMode = getProductMiniMode(product);
+        let miniOffersArray = [];
+        let miniOffersWhatsAppBlock = '';
+
+        if (miniMode === 'select5') {
+          miniOffersArray = [...getSelectedMiniOffers(product.id)];
+          const listStr = miniOffersArray.length
+            ? miniOffersArray.map((item, idx) => `   ${idx + 1}. ${item}`).join('\n')
+            : '   Hakuna zilizochaguliwa';
+          miniOffersWhatsAppBlock = `*Offer Ndogondogo Zilizochaguliwa (${miniOffersArray.length}/5):*\n${listStr}`;
+        } else if (miniMode === 'auto') {
+          miniOffersArray = Array.isArray(product.autoMiniOffers) && product.autoMiniOffers.length
+            ? [...product.autoMiniOffers]
+            : ['Mouse', 'Phone Charger'];
+          const listStr = miniOffersArray.map((item, idx) => `   ${idx + 1}. ${item}`).join('\n');
+          miniOffersWhatsAppBlock = `*Offer Ndogondogo (Automatic Bure):*\n${listStr}`;
+        }
+
+        const storeName = state.settings.storeName || 'PRE ORDERS BY THETWINS';
+        const targetWa = normalizePhone(state.settings.whatsappNumber || '255684664950').replace(/^\+/, '');
+        const timestamp = new Date().toLocaleString('sw-TZ', { dateStyle: 'medium', timeStyle: 'short' });
+
+        const messageLines = [
+          `*ODA MPYA - ${storeName} (DUBAI PRE-ORDER)*`,
+          '--------------------------------',
+          `*Jina la Mteja:* ${customerName}`,
+          `*Namba ya Simu:* ${customerPhone}`,
+          `*Mkoa:* ${region}`,
+          `*Utaratibu wa Kupokea:* ${deliveryLabel}`,
+          `*Maelezo Mengine:* ${extraNotes}`,
+          '--------------------------------',
+          `*Bidhaa:* ${product.name}`,
+          `*Aina ya Bei:* ${priceModeLabel}`,
+          `*Bei ya Kimoja:* ${formatTZS(unitPrice)}`,
+          `*Idadi:* ${state.orderQuantity}`,
+          `*JUMLA YA MALIPO:* ${formatTZS(total)}`
+        ];
+
+        if (miniOffersWhatsAppBlock) messageLines.push(miniOffersWhatsAppBlock);
+
+        messageLines.push(
+          `*Muda wa Oda:* ${timestamp}`,
+          '--------------------------------',
+          'Naomba uthibitisho wa pre-order hii kutoka Dubai. Asante!'
+        );
+
+        const orderRecord = {
+          id: 'ORD-' + Math.floor(1000 + Math.random() * 9000),
+          customerName, customerPhone, region, deliveryMode, deliveryLabel, extraNotes,
+          productName: product.name,
+          priceMode: priceModeLabel,
+          unitPrice,
+          quantity: state.orderQuantity,
+          total,
+          miniMode,
+          miniOffers: miniOffersArray,
+          status: 'Mpya',
+          createdAt: new Date().toISOString()
+        };
+
+        state.orders.unshift(orderRecord);
+        writeStorage(STORAGE_KEYS.ORDERS, state.orders);
+
+        const waUrl = `https://wa.me/${targetWa}?text=${encodeURIComponent(messageLines.join('\n'))}`;
+        window.open(waUrl, '_blank', 'noopener,noreferrer');
+
+        closeQuickOrderModal();
+        showToast('Oda inatumwa WhatsApp! Imerekodiwa pia kwenye Admin.');
+      });
+
+      // ===== J. ADMIN (PIN, bila kiungo cha kurudisha PIN) =====
+      const adminPinModal = document.getElementById('admin-pin-modal');
+      const adminDashboardModal = document.getElementById('admin-dashboard-modal');
+
+      document.querySelectorAll('[data-trigger-admin]').forEach((btn) => {
+        btn.addEventListener('click', () => {
+          const pinInput = document.getElementById('admin-pin-input');
+          pinInput.value = '';
+          pinInput.type = 'password';
+          document.getElementById('admin-pin-error').classList.add('hidden');
+          adminPinModal.classList.remove('hidden');
+          adminPinModal.classList.add('flex');
+          setTimeout(() => pinInput.focus(), 50);
+        });
+      });
+
+      document.getElementById('toggle-admin-pin-visibility').addEventListener('click', () => {
+        const pinInput = document.getElementById('admin-pin-input');
+        pinInput.type = pinInput.type === 'password' ? 'text' : 'password';
+      });
+
+      document.getElementById('cancel-pin-btn').addEventListener('click', () => {
+        adminPinModal.classList.add('hidden');
+        adminPinModal.classList.remove('flex');
+      });
+
+      document.getElementById('admin-pin-form').addEventListener('submit', (e) => {
+        e.preventDefault();
+        const enteredPin = document.getElementById('admin-pin-input').value.trim();
+        const validPin = String(state.settings.adminPin || '1234').trim();
+
+        if (enteredPin !== validPin) {
+          document.getElementById('admin-pin-error').classList.remove('hidden');
+          return;
+        }
+
+        adminPinModal.classList.add('hidden');
+        adminPinModal.classList.remove('flex');
+        openAdminDashboard();
+      });
+
+      function openAdminDashboard() {
+        renderAdminProducts();
+        renderAdminAutoMiniCheckboxes([]);
+        renderAdminSlides();
+        renderAdminMiniOffers();
+        renderAdminOrders();
+        populateAdminSettings();
+        adminDashboardModal.classList.remove('hidden');
+      }
+
+      document.getElementById('close-admin-dashboard-btn').addEventListener('click', () => {
+        adminDashboardModal.classList.add('hidden');
+        renderProducts();
+        renderHeroSlider();
+      });
+
+      document.querySelectorAll('.admin-tab-btn').forEach((btn) => {
+        btn.addEventListener('click', () => {
+          const target = btn.dataset.adminTab;
+          document.querySelectorAll('.admin-tab-btn').forEach((b) => {
+            const active = b.dataset.adminTab === target;
+            b.className = active
+              ? 'admin-tab-btn px-4 py-2.5 rounded-xl text-xs sm:text-sm font-extrabold bg-gradient-to-r from-[#00d2ff] to-[#10b981] text-slate-950 cursor-pointer whitespace-nowrap'
+              : 'admin-tab-btn px-4 py-2.5 rounded-xl text-xs sm:text-sm font-bold bg-slate-900 text-slate-300 border border-slate-700/80 cursor-pointer whitespace-nowrap';
+          });
+
+          document.querySelectorAll('.admin-tab-panel').forEach((panel) => {
+            const show = panel.id === `admin-tab-${target}`;
+            panel.classList.toggle('hidden', !show);
+            if (show && (target === 'products' || target === 'slider' || target === 'settings')) {
+              panel.classList.add('grid');
+            }
+          });
+        });
+      });
+
+      const offerToggle = document.getElementById('prod-offer-toggle');
+      const offerFieldsWrapper = document.getElementById('offer-fields-wrapper');
+      offerToggle.addEventListener('change', () => {
+        offerFieldsWrapper.classList.toggle('hidden', !offerToggle.checked);
+      });
+
+      document.querySelectorAll('.offer-preset-btn').forEach((presetBtn) => {
+        presetBtn.addEventListener('click', () => {
+          document.getElementById('prod-offer-hours-input').value = presetBtn.dataset.presetHours;
+          document.getElementById('prod-offer-mins-input').value = presetBtn.dataset.presetMins;
+        });
+      });
+
+      const miniModeSelect = document.getElementById('prod-mini-mode-select');
+      const autoMiniWrapper = document.getElementById('admin-auto-mini-wrapper');
+
+      miniModeSelect.addEventListener('change', () => {
+        autoMiniWrapper.classList.toggle('hidden', miniModeSelect.value !== 'auto');
+      });
+
+      function renderAdminAutoMiniCheckboxes(selectedList = []) {
+        const container = document.getElementById('admin-auto-mini-checkboxes');
+        if (!container) return;
+        container.innerHTML = state.miniOffers.map((item) => {
+          const checked = selectedList.includes(item);
+          return `
+            <label class="flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg bg-slate-900 border border-slate-700/80 text-[11px] text-slate-200 cursor-pointer">
+              <input type="checkbox" name="adminAutoMiniItem" value="${escapeHtml(item)}" ${checked ? 'checked' : ''} class="accent-[#10b981] w-3.5 h-3.5 cursor-pointer" />
+              <span class="truncate">${escapeHtml(item)}</span>
+            </label>
+          `;
+        }).join('');
+      }
+
+      // Pakia picha kama data URL (inahifadhiwa kwenye localStorage, haipotei ukirefresh)
+      document.getElementById('prod-image-file-input').addEventListener('change', async (e) => {
+        const file = e.target.files && e.target.files[0];
+        if (!file) return;
+        try {
+          state.uploadedProdImageUrl = await fileToDataUrl(file, 900);
+          document.getElementById('prod-file-status').classList.remove('hidden');
+          showToast('Picha ya bidhaa imepakiwa!');
+        } catch (err) {
+          showToast('Imeshindikana kusoma picha hiyo. Jaribu nyingine.', 'error');
+        }
+      });
+
+      document.getElementById('slide-image-file-input').addEventListener('change', async (e) => {
+        const file = e.target.files && e.target.files[0];
+        if (!file) return;
+        try {
+          state.uploadedSlideImageUrl = await fileToDataUrl(file, 1400);
+          showToast('Picha ya slider imepakiwa!');
+        } catch (err) {
+          showToast('Imeshindikana kusoma picha hiyo. Jaribu nyingine.', 'error');
+        }
+      });
+
+      function resetAdminProductForm() {
+        document.getElementById('edit-prod-id').value = '';
+        document.getElementById('admin-product-form').reset();
+        offerToggle.checked = false;
+        offerFieldsWrapper.classList.add('hidden');
+        miniModeSelect.value = 'select5';
+        autoMiniWrapper.classList.add('hidden');
+        renderAdminAutoMiniCheckboxes([]);
+        document.getElementById('turn-off-offer-btn').classList.add('hidden');
+        document.getElementById('cancel-edit-prod-btn').classList.add('hidden');
+        document.getElementById('prod-file-status').classList.add('hidden');
+        state.uploadedProdImageUrl = '';
+        document.getElementById('admin-prod-form-title').innerHTML = '<span class="w-2.5 h-2.5 rounded-full bg-[#00d2ff]"></span><span>Ongeza Bidhaa Mpya</span>';
+        document.getElementById('admin-prod-submit-btn').textContent = '+ Hifadhi Bidhaa Dukani';
+      }
+
+      document.getElementById('cancel-edit-prod-btn').addEventListener('click', resetAdminProductForm);
+
+      document.getElementById('turn-off-offer-btn').addEventListener('click', () => {
+        const editId = document.getElementById('edit-prod-id').value;
+        if (!editId) return;
+        const prod = state.products.find((p) => p.id === editId);
+        if (!prod) return;
+
+        prod.offerEndTime = null;
+        writeStorage(STORAGE_KEYS.PRODUCTS, state.products);
+        renderProducts();
+        renderAdminProducts();
+        resetAdminProductForm();
+        showToast(`${prod.name} imerudishwa kwenye Bei Halisia!`);
+      });
+
+      document.getElementById('admin-product-form').addEventListener('submit', (e) => {
+        e.preventDefault();
+        const editId = document.getElementById('edit-prod-id').value.trim();
+        const name = document.getElementById('prod-name-input').value.trim();
+        const category = document.getElementById('prod-category-input').value;
+        const specs = document.getElementById('prod-specs-input').value.trim();
+        const regularPrice = Number(document.getElementById('prod-regular-price-input').value);
+        const urlInput = document.getElementById('prod-image-url-input').value.trim();
+
+        const offerEnabled = offerToggle.checked;
+        const offerPrice = Number(document.getElementById('prod-offer-price-input').value) || 0;
+        const hours = Math.max(0, Number(document.getElementById('prod-offer-hours-input').value) || 0);
+        const mins = Math.max(0, Number(document.getElementById('prod-offer-mins-input').value) || 0);
+
+        const miniOfferMode = miniModeSelect.value;
+        const autoMiniOffers = Array.from(document.querySelectorAll('input[name="adminAutoMiniItem"]:checked')).map((el) => el.value);
+
+        if (!name || !regularPrice || !specs) return;
+
+        let offerEndTime = null;
+        if (offerEnabled) {
+          if (offerPrice <= 0 || offerPrice >= regularPrice) {
+            showToast('Bei ya Offer lazima iwe ndogo kuliko Bei Halisia.', 'error');
+            return;
+          }
+          const durationMs = (hours * 3600 + mins * 60) * 1000;
+          if (durationMs <= 0) {
+            showToast('Weka angalau dakika 1 au saa 1 kwa muda wa offer.', 'error');
+            return;
+          }
+          offerEndTime = Date.now() + durationMs;
+        }
+
+        if (editId) {
+          const idx = state.products.findIndex((p) => p.id === editId);
+          if (idx !== -1) {
+            const finalImage = state.uploadedProdImageUrl || urlInput || state.products[idx].image || fallbackImage(name);
+            state.products[idx] = {
+              ...state.products[idx],
+              name, category, specs, regularPrice,
+              offerPrice: offerPrice || state.products[idx].offerPrice || Math.round(regularPrice * 0.9),
+              offerEndTime,
+              miniOfferMode,
+              autoMiniOffers: miniOfferMode === 'auto' ? (autoMiniOffers.length ? autoMiniOffers : ['Mouse', 'Phone Charger']) : [],
+              image: finalImage
+            };
+          }
+          showToast(`${name} imesasishwa kikamilifu!`);
+        } else {
+          const finalImage = state.uploadedProdImageUrl || urlInput || fallbackImage(name);
+          state.products.unshift({
+            id: 'prod-' + Date.now(),
+            name, category, specs, regularPrice,
+            offerPrice: offerPrice || Math.round(regularPrice * 0.9),
+            offerEndTime,
+            miniOfferMode,
+            autoMiniOffers: miniOfferMode === 'auto' ? (autoMiniOffers.length ? autoMiniOffers : ['Mouse', 'Phone Charger']) : [],
+            image: finalImage
+          });
+          showToast(`${name} imeongezwa dukani!`);
+        }
+
+        writeStorage(STORAGE_KEYS.PRODUCTS, state.products);
+        renderProducts();
+        renderAdminProducts();
+        resetAdminProductForm();
+      });
+
+      function renderAdminProducts() {
+        document.getElementById('admin-prod-count').textContent = state.products.length;
+        const container = document.getElementById('admin-products-list');
+        const now = Date.now();
+
+        container.innerHTML = state.products.map((prod) => {
+          const offerOn = isOfferActive(prod, now);
+          const remMs = offerOn ? Math.max(0, Number(prod.offerEndTime) - now) : 0;
+          const mMode = getProductMiniMode(prod);
+
+          return `
+            <div class="p-3.5 rounded-2xl bg-slate-950/90 border ${offerOn ? 'border-[#f59e0b]/45' : 'border-slate-800'} space-y-2.5">
+              <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+                <div class="flex items-center gap-3 min-w-0">
+                  <img src="${escapeHtml(prod.image)}" alt="${escapeHtml(prod.name)}" onerror="this.onerror=null;this.src='${fallbackImage(prod.name)}';" class="w-14 h-14 rounded-xl object-cover shrink-0 bg-slate-900" />
+                  <div class="min-w-0">
+                    <div class="flex flex-wrap items-center gap-1.5">
+                      <h4 class="text-xs sm:text-sm font-extrabold text-white truncate">${escapeHtml(prod.name)}</h4>
+                      ${offerOn ? `
+                        <span class="px-2 py-0.5 rounded-md bg-[#f59e0b]/20 border border-[#f59e0b]/45 text-amber-300 text-[10px] font-black uppercase tabular-timer">
+                          OFFER • <span data-countdown-for="${escapeHtml(prod.id)}">${formatCountdown(remMs)}</span>
+                        </span>
+                      ` : `
+                        <span class="px-2 py-0.5 rounded-md bg-slate-800 text-slate-400 text-[10px] font-bold">BEI HALISIA</span>
+                      `}
+                    </div>
+                    <p class="text-[11px] text-slate-400 truncate mt-0.5">${escapeHtml(prod.category)} • ${escapeHtml(prod.specs)}</p>
+                    <div class="flex flex-wrap items-center gap-2 mt-1 text-xs">
+                      ${offerOn ? `
+                        <span class="font-extrabold text-[#10b981]">Offer: ${formatTZS(prod.offerPrice)}</span>
+                        <span class="text-slate-500 line-through">Halisia: ${formatTZS(prod.regularPrice)}</span>
+                      ` : `
+                        <span class="font-extrabold text-[#00d2ff]">Halisia: ${formatTZS(prod.regularPrice)}</span>
+                      `}
+                    </div>
+                  </div>
+                </div>
+
+                <div class="flex items-center gap-1.5 shrink-0 self-end sm:self-center">
+                  ${offerOn ? `
+                    <button type="button" data-admin-stop-offer="${escapeHtml(prod.id)}" class="px-2.5 py-1.5 rounded-lg bg-[#f59e0b]/15 hover:bg-[#f59e0b] text-amber-300 hover:text-slate-950 border border-[#f59e0b]/40 text-[11px] font-bold transition cursor-pointer">Zima Offer</button>
+                  ` : ''}
+                  <button type="button" data-admin-edit-prod="${escapeHtml(prod.id)}" class="px-2.5 py-1.5 rounded-lg bg-[#00d2ff]/15 hover:bg-[#00d2ff] text-[#00d2ff] hover:text-slate-950 border border-[#00d2ff]/35 text-[11px] font-bold transition cursor-pointer">Hariri</button>
+                  <button type="button" data-admin-del-prod="${escapeHtml(prod.id)}" class="px-2.5 py-1.5 rounded-lg bg-rose-500/15 hover:bg-rose-500 text-rose-300 hover:text-white border border-rose-500/35 text-[11px] font-bold transition cursor-pointer">Futa</button>
+                </div>
+              </div>
+
+              <div class="pt-2 border-t border-slate-800/80 flex flex-wrap items-center justify-between gap-2">
+                <span class="text-[10px] font-bold uppercase tracking-wider text-slate-400">Offer Ndogondogo:</span>
+                <div class="flex items-center gap-1.5">
+                  <button type="button" data-quick-mini-mode="select5" data-prod-id="${escapeHtml(prod.id)}" class="px-2.5 py-1 rounded-lg text-[10px] font-extrabold transition cursor-pointer ${mMode === 'select5' ? 'bg-[#00d2ff] text-slate-950' : 'bg-slate-900 text-slate-400 border border-slate-700 hover:text-white'}">Chagua 5</button>
+                  <button type="button" data-quick-mini-mode="auto" data-prod-id="${escapeHtml(prod.id)}" class="px-2.5 py-1 rounded-lg text-[10px] font-extrabold transition cursor-pointer ${mMode === 'auto' ? 'bg-[#10b981] text-slate-950' : 'bg-slate-900 text-slate-400 border border-slate-700 hover:text-white'}">Automatic</button>
+                  <button type="button" data-quick-mini-mode="off" data-prod-id="${escapeHtml(prod.id)}" class="px-2.5 py-1 rounded-lg text-[10px] font-extrabold transition cursor-pointer ${mMode === 'off' ? 'bg-rose-500 text-white' : 'bg-slate-900 text-slate-400 border border-slate-700 hover:text-white'}">Zima (OFF)</button>
+                </div>
+              </div>
+            </div>
+          `;
+        }).join('');
+      }
+
+      document.getElementById('admin-products-list').addEventListener('click', (e) => {
+        const quickModeBtn = e.target.closest('[data-quick-mini-mode]');
+        if (quickModeBtn) {
+          const prodId = quickModeBtn.dataset.prodId;
+          const nextMode = quickModeBtn.dataset.quickMiniMode;
+          const prod = state.products.find((p) => p.id === prodId);
+          if (!prod) return;
+
+          prod.miniOfferMode = nextMode;
+          if (nextMode === 'auto' && (!Array.isArray(prod.autoMiniOffers) || prod.autoMiniOffers.length === 0)) {
+            prod.autoMiniOffers = ['Mouse', 'Phone Charger'];
+          }
+          writeStorage(STORAGE_KEYS.PRODUCTS, state.products);
+          renderProducts();
+          renderAdminProducts();
+          const labelMap = { select5: 'Chagua 5', auto: 'Automatic', off: 'Zima (OFF)' };
+          showToast(`${prod.name}: Offer ndogondogo imewekwa "${labelMap[nextMode]}"`);
+          return;
+        }
+
+        const stopBtn = e.target.closest('[data-admin-stop-offer]');
+        if (stopBtn) {
+          const prod = state.products.find((p) => p.id === stopBtn.dataset.adminStopOffer);
+          if (!prod) return;
+          prod.offerEndTime = null;
+          writeStorage(STORAGE_KEYS.PRODUCTS, state.products);
+          renderProducts();
+          renderAdminProducts();
+          showToast(`Offer ya ${prod.name} imezimwa. Imerudi Bei Halisia.`);
+          return;
+        }
+
+        const editBtn = e.target.closest('[data-admin-edit-prod]');
+        if (editBtn) {
+          const prod = state.products.find((p) => p.id === editBtn.dataset.adminEditProd);
+          if (!prod) return;
+
+          state.uploadedProdImageUrl = '';
+          document.getElementById('edit-prod-id').value = prod.id;
+          document.getElementById('prod-name-input').value = prod.name;
+          document.getElementById('prod-category-input').value = prod.category;
+          document.getElementById('prod-regular-price-input').value = prod.regularPrice;
+          document.getElementById('prod-specs-input').value = prod.specs;
+          // Picha za data: hazionyeshwi kwenye kisanduku cha URL (zingekuwa ndefu sana); picha ya sasa inabaki ikiwa hutabadilisha
+          document.getElementById('prod-image-url-input').value = /^(blob:|data:)/.test(prod.image) ? '' : prod.image;
+
+          const activeNow = isOfferActive(prod);
+          offerToggle.checked = activeNow;
+          offerFieldsWrapper.classList.toggle('hidden', !activeNow);
+          document.getElementById('prod-offer-price-input').value = prod.offerPrice || Math.round(prod.regularPrice * 0.9);
+
+          if (activeNow) {
+            const remSec = Math.max(60, Math.ceil((Number(prod.offerEndTime) - Date.now()) / 1000));
+            document.getElementById('prod-offer-hours-input').value = Math.floor(remSec / 3600);
+            document.getElementById('prod-offer-mins-input').value = Math.floor((remSec % 3600) / 60);
+            document.getElementById('turn-off-offer-btn').classList.remove('hidden');
+          } else {
+            document.getElementById('prod-offer-hours-input').value = 6;
+            document.getElementById('prod-offer-mins-input').value = 0;
+            document.getElementById('turn-off-offer-btn').classList.add('hidden');
+          }
+
+          const mMode = getProductMiniMode(prod);
+          miniModeSelect.value = mMode;
+          autoMiniWrapper.classList.toggle('hidden', mMode !== 'auto');
+          renderAdminAutoMiniCheckboxes(prod.autoMiniOffers || []);
+
+          document.getElementById('admin-prod-form-title').innerHTML = '<span class="w-2.5 h-2.5 rounded-full bg-[#f59e0b]"></span><span>Hariri Bidhaa & Offer</span>';
+          document.getElementById('admin-prod-submit-btn').textContent = 'Hifadhi Mabadiliko';
+          document.getElementById('cancel-edit-prod-btn').classList.remove('hidden');
+          return;
+        }
+
+        const delBtn = e.target.closest('[data-admin-del-prod]');
+        if (delBtn) {
+          const id = delBtn.dataset.adminDelProd;
+          state.products = state.products.filter((p) => p.id !== id);
+          writeStorage(STORAGE_KEYS.PRODUCTS, state.products);
+          renderProducts();
+          renderAdminProducts();
+          showToast('Bidhaa imefutwa.');
+        }
+      });
+
+      // ===== K. SLIDER, MINI OFFERS, ORDERS, SETTINGS =====
+      function resetAdminSlideForm() {
+        document.getElementById('edit-slide-id').value = '';
+        document.getElementById('admin-slide-form').reset();
+        state.uploadedSlideImageUrl = '';
+        document.getElementById('admin-slide-form-title').textContent = 'Ongeza Slide Mpya';
+        document.getElementById('admin-slide-submit-btn').textContent = '+ Hifadhi Kwenye Slider';
+        document.getElementById('cancel-edit-slide-btn').classList.add('hidden');
+      }
+
+      document.getElementById('cancel-edit-slide-btn').addEventListener('click', resetAdminSlideForm);
+
+      function renderAdminSlides() {
+        document.getElementById('admin-slide-count').textContent = state.slides.length;
+        const container = document.getElementById('admin-slides-list');
+        container.innerHTML = state.slides.map((slide) => `
+          <div class="p-3 rounded-xl bg-slate-950/90 border border-slate-800 flex items-center justify-between gap-3">
+            <div class="flex items-center gap-3 min-w-0">
+              <img src="${escapeHtml(slide.image)}" alt="${escapeHtml(slide.title)}" onerror="this.onerror=null;this.src='${fallbackImage(slide.tag)}';" class="w-16 h-12 rounded-lg object-cover shrink-0" />
+              <div class="min-w-0">
+                <span class="text-[10px] font-extrabold text-amber-300 uppercase">${escapeHtml(slide.tag)}</span>
+                <h4 class="text-xs sm:text-sm font-bold text-white truncate">${escapeHtml(slide.title)}</h4>
+                <p class="text-[11px] text-slate-400 truncate">${escapeHtml(slide.subtitle)}</p>
+              </div>
+            </div>
+            <div class="flex items-center gap-1.5 shrink-0">
+              <button type="button" data-admin-edit-slide="${escapeHtml(slide.id)}" class="px-2.5 py-1.5 rounded-lg bg-[#00d2ff]/15 hover:bg-[#00d2ff] text-[#00d2ff] hover:text-slate-950 border border-[#00d2ff]/30 text-xs font-bold cursor-pointer">Hariri</button>
+              <button type="button" data-admin-del-slide="${escapeHtml(slide.id)}" class="px-2.5 py-1.5 rounded-lg bg-rose-500/15 hover:bg-rose-500 text-rose-300 hover:text-white border border-rose-500/30 text-xs font-bold cursor-pointer">Futa</button>
+            </div>
+          </div>
+        `).join('');
+      }
+
+      document.getElementById('admin-slide-form').addEventListener('submit', (e) => {
+        e.preventDefault();
+        const editId = document.getElementById('edit-slide-id').value.trim();
+        const tag = document.getElementById('slide-tag-input').value.trim();
+        const title = document.getElementById('slide-title-input').value.trim();
+        const subtitle = document.getElementById('slide-subtitle-input').value.trim();
+        const urlInput = document.getElementById('slide-image-url-input').value.trim();
+
+        if (!tag || !title || !subtitle) return;
+
+        if (editId) {
+          const idx = state.slides.findIndex((s) => s.id === editId);
+          if (idx !== -1) {
+            state.slides[idx] = {
+              ...state.slides[idx],
+              tag, title, subtitle,
+              image: state.uploadedSlideImageUrl || urlInput || state.slides[idx].image
+            };
+          }
+          showToast('Slide imesasishwa!');
+        } else {
+          state.slides.push({
+            id: 'slide-' + Date.now(),
+            tag, title, subtitle,
+            image: state.uploadedSlideImageUrl || urlInput || fallbackImage(tag)
+          });
+          showToast('Slide mpya imeongezwa!');
+        }
+
+        writeStorage(STORAGE_KEYS.SLIDES, state.slides);
+        renderHeroSlider();
+        renderAdminSlides();
+        resetAdminSlideForm();
+      });
+
+      document.getElementById('admin-slides-list').addEventListener('click', (e) => {
+        const editBtn = e.target.closest('[data-admin-edit-slide]');
+        if (editBtn) {
+          const slide = state.slides.find((s) => s.id === editBtn.dataset.adminEditSlide);
+          if (!slide) return;
+          state.uploadedSlideImageUrl = '';
+          document.getElementById('edit-slide-id').value = slide.id;
+          document.getElementById('slide-tag-input').value = slide.tag;
+          document.getElementById('slide-title-input').value = slide.title;
+          document.getElementById('slide-subtitle-input').value = slide.subtitle;
+          document.getElementById('slide-image-url-input').value = /^(blob:|data:)/.test(slide.image) ? '' : slide.image;
+          document.getElementById('admin-slide-form-title').textContent = 'Hariri Slide';
+          document.getElementById('admin-slide-submit-btn').textContent = 'Hifadhi Slide';
+          document.getElementById('cancel-edit-slide-btn').classList.remove('hidden');
+          return;
+        }
+
+        const delBtn = e.target.closest('[data-admin-del-slide]');
+        if (delBtn) {
+          if (state.slides.length <= 1) {
+            showToast('Angalau slide 1 lazima ibaki.', 'error');
+            return;
+          }
+          state.slides = state.slides.filter((s) => s.id !== delBtn.dataset.adminDelSlide);
+          writeStorage(STORAGE_KEYS.SLIDES, state.slides);
+          renderHeroSlider();
+          renderAdminSlides();
+          showToast('Slide imefutwa.');
+        }
+      });
+
+      function renderAdminMiniOffers() {
+        const container = document.getElementById('admin-mini-offers-inputs');
+        if (!container) return;
+
+        container.innerHTML = state.miniOffers.map((label, idx) => `
+          <div class="flex items-center gap-2.5 p-2.5 rounded-xl bg-slate-950/90 border border-slate-800">
+            <span class="w-6 h-6 rounded-lg bg-[#00d2ff]/15 border border-[#00d2ff]/35 text-[#00d2ff] text-xs font-black flex items-center justify-center shrink-0">${idx + 1}</span>
+            <input type="text" data-mini-offer-index="${idx}" required value="${escapeHtml(label)}" placeholder="Offer ndogondogo #${idx + 1}" class="w-full bg-transparent text-xs sm:text-sm font-semibold text-white placeholder-slate-500 focus:outline-none" />
+          </div>
+        `).join('');
+      }
+
+      document.getElementById('admin-mini-offers-form').addEventListener('submit', (e) => {
+        e.preventDefault();
+        const inputs = Array.from(document.querySelectorAll('[data-mini-offer-index]'));
+        state.miniOffers = inputs.map((inp, i) => inp.value.trim() || DEFAULT_MINI_OFFERS[i]);
+        writeStorage(STORAGE_KEYS.MINI_OFFERS, state.miniOffers);
+        renderProducts();
+        renderAdminAutoMiniCheckboxes([]);
+        showToast('Offer ndogondogo 10 zimehifadhiwa!');
+      });
+
+      document.getElementById('reset-mini-offers-btn').addEventListener('click', () => {
+        state.miniOffers = [...DEFAULT_MINI_OFFERS];
+        writeStorage(STORAGE_KEYS.MINI_OFFERS, state.miniOffers);
+        renderAdminMiniOffers();
+        renderProducts();
+        showToast('Offer ndogondogo 10 za awali zimerudishwa!');
+      });
+
+      function renderAdminOrders() {
+        document.getElementById('admin-order-count').textContent = state.orders.length;
+        const container = document.getElementById('admin-orders-list');
+
+        if (!state.orders.length) {
+          container.innerHTML = `
+            <div class="p-8 text-center text-xs text-slate-400 bg-slate-950/60 rounded-2xl border border-slate-800">
+              Bado hakuna oda iliyotumwa. Mteja akibonyeza "Tuma Oda WhatsApp Sasa", itaonekana hapa.
+            </div>
+          `;
+          return;
+        }
+
+        container.innerHTML = state.orders.map((ord) => {
+          const dateLabel = new Date(ord.createdAt).toLocaleString('sw-TZ', { dateStyle: 'medium', timeStyle: 'short' });
+          const isOfferOrder = ord.priceMode === 'Bei ya Offer';
+          const status = ord.status || 'Mpya';
+          const miniOffersList = Array.isArray(ord.miniOffers) && ord.miniOffers.length
+            ? ord.miniOffers.map((m) => `<span class="px-2 py-0.5 rounded bg-[#00d2ff]/10 border border-[#00d2ff]/30 text-[10px] text-cyan-200 font-semibold">${escapeHtml(m)}</span>`).join('')
+            : '<span class="text-[10px] text-slate-500">Hakuna</span>';
+
+          return `
+            <div class="p-4 rounded-2xl bg-slate-950/95 border border-slate-800 flex flex-col lg:flex-row lg:items-center justify-between gap-3">
+              <div class="space-y-1.5">
+                <div class="flex flex-wrap items-center gap-2">
+                  <span class="text-xs font-black text-[#00d2ff]">${escapeHtml(ord.id)}</span>
+                  <span class="text-xs sm:text-sm font-extrabold text-white">${escapeHtml(ord.productName)} (x${ord.quantity})</span>
+                  <span class="px-2 py-0.5 rounded-md text-[10px] font-extrabold ${isOfferOrder ? 'bg-[#f59e0b]/20 text-amber-300 border border-[#f59e0b]/45' : 'bg-slate-800 text-slate-300'}">${escapeHtml(ord.priceMode)}</span>
+                </div>
+                <p class="text-xs text-slate-300">
+                  Mteja: <strong class="text-white">${escapeHtml(ord.customerName || 'Mteja')}</strong> • Simu: <strong class="text-[#10b981]">${escapeHtml(ord.customerPhone)}</strong> • Mkoa: <strong class="text-cyan-300">${escapeHtml(ord.region || '-')}</strong>
+                </p>
+                <p class="text-[11px] text-slate-400">
+                  Upokeaji: <span class="text-slate-200 font-semibold">${escapeHtml(ord.deliveryLabel || ord.location || '-')}</span> • Maelezo: ${escapeHtml(ord.extraNotes || '-')} • ${dateLabel}
+                </p>
+                <div class="flex flex-wrap items-center gap-1 pt-0.5">
+                  <span class="text-[10px] font-bold text-slate-400 mr-1">Offer Ndogondogo:</span>
+                  ${miniOffersList}
+                </div>
+              </div>
+
+              <div class="flex sm:items-center justify-between lg:flex-col lg:items-end gap-2 shrink-0 pt-2 lg:pt-0 border-t lg:border-t-0 border-slate-800/80">
+                <div class="text-sm sm:text-base font-black text-[#10b981]">${formatTZS(ord.total)}</div>
+                <select data-order-status-id="${escapeHtml(ord.id)}" class="px-2.5 py-1.5 rounded-xl bg-slate-900 border border-slate-700 text-xs font-bold text-white focus:outline-none focus:border-[#00d2ff] cursor-pointer">
+                  <option value="Mpya" ${status === 'Mpya' ? 'selected' : ''}>🔵 Mpya</option>
+                  <option value="Inashughulikiwa" ${status === 'Inashughulikiwa' ? 'selected' : ''}>🟡 Inashughulikiwa</option>
+                  <option value="Imekamilika" ${status === 'Imekamilika' ? 'selected' : ''}>🟢 Imekamilika</option>
+                  <option value="Imeghairiwa" ${status === 'Imeghairiwa' ? 'selected' : ''}>🔴 Imeghairiwa</option>
+                </select>
+              </div>
+            </div>
+          `;
+        }).join('');
+      }
+
+      document.getElementById('admin-orders-list').addEventListener('change', (e) => {
+        const select = e.target.closest('[data-order-status-id]');
+        if (!select) return;
+        const order = state.orders.find((o) => o.id === select.dataset.orderStatusId);
+        if (!order) return;
+        order.status = select.value;
+        writeStorage(STORAGE_KEYS.ORDERS, state.orders);
+        showToast(`Hali ya oda ${order.id} imebadilishwa kuwa "${order.status}".`);
+      });
+
+      document.getElementById('clear-orders-btn').addEventListener('click', () => {
+        if (!state.orders.length) return;
+        askConfirmation('Futa Historia ya Oda', 'Una uhakika unataka kufuta rekodi zote za oda?', () => {
+          state.orders = [];
+          writeStorage(STORAGE_KEYS.ORDERS, state.orders);
+          renderAdminOrders();
+          showToast('Historia ya oda imefutwa.');
+        });
+      });
+
+      function populateAdminSettings() {
+        document.getElementById('settings-store-name').value = state.settings.storeName || 'PRE ORDERS BY THETWINS';
+        document.getElementById('settings-wa-number').value = state.settings.whatsappNumber || '255684664950';
+        document.getElementById('settings-office-location').value = state.settings.officeLocation || 'Mlimani City, Dar es Salaam';
+        document.getElementById('settings-admin-pin').value = state.settings.adminPin || '1234';
+      }
+
+      document.getElementById('admin-settings-form').addEventListener('submit', (e) => {
+        e.preventDefault();
+        const storeName = document.getElementById('settings-store-name').value.trim() || 'PRE ORDERS BY THETWINS';
+        const cleanWa = normalizePhone(document.getElementById('settings-wa-number').value).replace(/^\+/, '');
+        const officeLocation = document.getElementById('settings-office-location').value.trim() || 'Mlimani City, Dar es Salaam';
+        const adminPin = document.getElementById('settings-admin-pin').value.trim() || '1234';
+
+        if (cleanWa.length < 10) {
+          showToast('Weka namba sahihi ya WhatsApp ikianza na 255 (mfano 255684664950).', 'error');
+          return;
+        }
+
+        state.settings = { storeName, whatsappNumber: cleanWa, officeLocation, adminPin };
+        writeStorage(STORAGE_KEYS.SETTINGS, state.settings);
+        applyBranding();
+        showToast('Mipangilio ya duka imehifadhiwa!');
+      });
+
+      document.getElementById('open-reset-confirm-btn').addEventListener('click', () => {
+        askConfirmation(
+          'Rudisha Mipangilio ya Awali',
+          'Bidhaa za awali, Dubai Banner ("Okoa Hadi TZS 400,000/-"), na mipangilio zitarudishwa. Hii pia inarudisha PIN ya Admin kuwa ya awali.',
+          () => {
+            state.products = createSeedProducts();
+            state.miniOffers = [...DEFAULT_MINI_OFFERS];
+            state.selectedMiniOffersByProduct = {};
+            state.slides = [...DEFAULT_SLIDES];
+            state.settings = { ...DEFAULT_SETTINGS };
+            writeStorage(STORAGE_KEYS.PRODUCTS, state.products);
+            writeStorage(STORAGE_KEYS.MINI_OFFERS, state.miniOffers);
+            writeStorage(STORAGE_KEYS.SLIDES, state.slides);
+            writeStorage(STORAGE_KEYS.SETTINGS, state.settings);
+            applyBranding();
+            renderHeroSlider();
+            renderProducts();
+            renderAdminProducts();
+            renderAdminSlides();
+            renderAdminMiniOffers();
+            populateAdminSettings();
+            showToast('Mipangilio na bidhaa za awali zimerudishwa upya!');
+          }
+        );
+      });
+
+      // ===== L. BOOTSTRAP =====
+      applyBranding();
+      updateAuthUI();
+      renderHeroSlider();
+      restartSliderAutoPlay();
+      renderProducts();
+    })();
+  </script>
+</body>
+</html>
